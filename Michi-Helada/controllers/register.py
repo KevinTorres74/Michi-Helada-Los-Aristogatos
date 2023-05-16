@@ -1,7 +1,7 @@
 import functools
 
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
-from alchemyClassses.cliente import Cliente
+from alchemyClasses.cliente import Cliente
 from models.model_cliente import agregar_cliente
 
 # maneja la logica de registrarse al sistema
