@@ -1,0 +1,22 @@
+from alchemyClasses.__init__ import db
+from sqlalchemy import text
+
+class Cliente(db.Model):
+    __tablename__ = 'cliente'
+
+    id_cliente = db.Column('id_cliente', db.String(200), primary_key=True, server_default=text('UUID()'))
+    nombre = db.Column('nombre', db.String(45))
+    correo = db.Column('correo', db.String(45))
+    telefono = db.Column('telefono', db.Integer)
+    fna = db.Column('fna', db.Date)
+    contrasena = db.Column('contraseña', db.String(45))
+
+
+
+    def __init__(self, id_cliente, nombre, correo, telefono, fna, contrasena):
+        self.id_cliente = id_cliente
+        self.nombre = nombre
+        self.correo = correo
+        self.telefono = telefono
+        self.fna = fna
+        self.contrasena = contrasena
