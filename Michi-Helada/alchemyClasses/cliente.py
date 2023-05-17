@@ -9,14 +9,14 @@ class Cliente(db.Model):
     correo = db.Column('correo', db.String(45))
     telefono = db.Column('telefono', db.Integer)
     fna = db.Column('fna', db.Date)
-    contrasena = db.Column('contraseña', db.String(45))
+    contraseña = db.Column('contraseña', db.String(45))
 
 
 
-    def __init__(self, id_cliente, nombre, correo, telefono, fna, contrasena):
+    def __init__(self, id_cliente, nombre, correo, telefono, fna, contraseña):
         self.id_cliente = id_cliente
         self.nombre = nombre
         self.correo = correo
         self.telefono = telefono
         self.fna = fna
-        self.contrasena = contrasena
+        self.contraseña = contraseña

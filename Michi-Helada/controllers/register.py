@@ -19,10 +19,11 @@ def register():
         correo = request.form["email"]
         numero = request.form["numero"]
         fnacimiento = request.form["nacimiento"]
-        contraseña = request.form["password"]
+        contrasena = request.form["password"]
+        print(nombre, str("  "), correo, str("  "),numero, str("  "),fnacimiento, str("  "),contrasena)
 
         # Agregar a la base de datos al cliente
-        agregar_cliente(nombre, correo, numero, fnacimiento,contraseña)
+        agregar_cliente(nombre, correo, numero, fnacimiento, contrasena)
 
         # Redirigir a una página de éxito o mostrar un mensaje de éxito
         flash("Registro exitoso")
@@ -36,7 +37,7 @@ def success():
     if session.get('id_cliente') != None:
         return render_template("success.html")
     flash("ERROR: Cookie de sesion vacia")
-    return redirect(url_for('login.login'))
+    return redirect(url_for('register.register'))
 
 @registerBlueprint.route("/failure", methods=["GET"])
 def failure():
