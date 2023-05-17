@@ -20,7 +20,7 @@ def register():
         numero = request.form["numero"]
         fnacimiento = request.form["nacimiento"]
         contrasena = request.form["password"]
-        print(nombre, str("  "), correo, str("  "),numero, str("  "),fnacimiento, str("  "),contrasena)
+        flash(nombre + "  " + correo + "  " + numero + "  " + fnacimiento + "  " + contrasena)
 
         # Agregar a la base de datos al cliente
         agregar_cliente(nombre, correo, numero, fnacimiento, contrasena)

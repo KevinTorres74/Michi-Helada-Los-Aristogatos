@@ -4,7 +4,7 @@ from controllers.register import registerBlueprint
 
 app = Flask(__name__, instance_relative_config=True)
 app.register_blueprint(registerBlueprint)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Josue318#@localhost:3306/prueba"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Josue318#@localhost:3306/ing_soft"
 app.config.from_mapping(
     SECRET_KEY = 'dev'
 )
