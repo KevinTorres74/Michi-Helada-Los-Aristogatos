@@ -12,7 +12,7 @@ db.init_app(app)
 
 @app.route('/', methods=['GET','POST'])
 def hello_world():
-    return redirect(url_for('login.login'))
+    return redirect(url_for('register.register'))
 
 if __name__ == '__main__':
     db.create_all()
