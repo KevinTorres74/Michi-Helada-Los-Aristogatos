@@ -1,12 +1,12 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} Successful login</title>
+<title>{% block title %}{% endblock %} Successful register</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <nav>
-  <h1> Successful login!</h1>
+  <h1> Successful register!</h1>
   <ul>
-    {% if  session.get('user_id') != None %}
-      <li>Hello <span>{{ session.get('user_id') }}</span>
-      <li><a href="{{ url_for('logout.logout') }}">Log Out</a>
+    {% if  session.get('cliente.id') != None %}
+      <li>Hello <span>{{ session.get('cliente_id') }}</span>
+
     {% endif %}
   </ul>
 </nav>

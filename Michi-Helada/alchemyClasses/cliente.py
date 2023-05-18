@@ -4,7 +4,8 @@ from sqlalchemy import text
 class Cliente(db.Model):
     __tablename__ = 'cliente'
 
-    id_cliente = db.Column('id_cliente', db.String(200), primary_key=True, server_default=text('UUID()'))
+    #id_cliente = db.Column('id_cliente', db.String(200), primary_key=True, server_default=text('UUID()'))
+    id_cliente = db.Column('id_cliente', db.String(200), primary_key=True)
     nombre = db.Column('nombre', db.String(45))
     correo = db.Column('correo', db.String(45))
     telefono = db.Column('telefono', db.Integer)

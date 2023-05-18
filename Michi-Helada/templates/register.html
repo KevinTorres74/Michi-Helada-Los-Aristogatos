@@ -41,26 +41,72 @@
             text-align: center;
         }
     </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script type="text/javascript">
+        function validaNombre() {
+            var NombreU = document.getElementById("NOMBRE").value;
+            if(NombreU != ""){
+                return true;
+            }else{
+                alert("Ingrese su nombre");
+                return false;
+            }
+        }
+
+        function validaNum () {
+            var cpU = document.getElementById("TELEFONO").value;
+                if(cpU != ""){
+                    if(isNaN(cpU)){
+                        alert("Sólo se aceptan datos de tipo numérico");
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }else{
+                    alert("Ingrese el telefono");
+                return false;
+            }
+        }
+
+        function verifica_formulario(){
+            var nom = validaNombre();
+            var num = validaNum();
+            if(nom==true && num==true){
+                alert("ingrese el nombre");
+                }
+        }
+    </script>
+
 </head>
 <body>
     <div class="container">
-        <h2>Please register to system</h2>
+        <h2>Registrarse al sistema</h2>
         <br>
 
 
-        <from action="" method="post">
-            <input type="text" placeholder="Nombre" name="nombre"  value="{{request.form.nombre}}">
+        <form action="/register" method="post">
+
+            <input type="text" placeholder="Id" name="id_cliente"  id="ID" value="{{request.form.id_cliente }}">
             <br>
-            <input type="Correo" placeholder="Email" name="email" value="{{request.form.email }}">
+
+            <input type="text" placeholder="Nombre" name="nombre"  id="NOMBRE" value="{{request.form.nombre }}">
             <br>
-            <input type="Integer" placeholder="Número" name="numero" value="{{request.form.numero }}">
+
+            <input type="Correo" placeholder="Correo" name="correo" id="CORREO" value="{{request.form.correo }}">
             <br>
-            <a>Fecha de nacimiento </a><input type="date" placeholder="Fecha de nacimiento" name="nacimiento"  value="{{request.form.nacimiento }}">
+
+            <input type="Integer" placeholder="Número" name="telefono" id="TELEFONO" value="{{request.form.telefono }}">
             <br>
-            <input type="password" placeholder="Password" name="password"  value="{{request.form.password }}">
+
+            <input type="date" placeholder="Fecha de nacimiento" name="fna" id="FNA"  value="{{request.form.fna }}">
             <br>
-            <input class="btn btn-default" type="submit" value="Register">
-        </from>
+
+            <input type="password" placeholder="Password" name="contraseña"  id="CONTRASEÑA" value="{{request.form.contraseña }}">
+            <br>
+            <!-- <input class="btn btn-default" type="submit" value="Register"> -->
+            <input type="submit" value="Register" onclick="verifica_formulario()"><li><a href="{{ url_for('loginAdmin.loginAdmin') }}">LogAdmin</a>
+        </form>
         {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}
         {% endif %}
