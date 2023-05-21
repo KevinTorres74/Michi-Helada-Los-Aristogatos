@@ -73,7 +73,7 @@
             var nom = validaNombre();
             var num = validaNum();
             if(nom==true && num==true){
-                alert("ingrese el nombre");
+                alert("Se ha registrado con éxito");
                 }
         }
     </script>
@@ -105,7 +105,8 @@
             <input type="password" placeholder="Password" name="contraseña"  id="CONTRASEÑA" value="{{request.form.contraseña }}">
             <br>
             <!-- <input class="btn btn-default" type="submit" value="Register"> -->
-            <input type="submit" value="Register" onclick="verifica_formulario()"><li><a href="{{ url_for('loginAdmin.loginAdmin') }}">LogAdmin</a>
+            <input type="submit" value="Register" onclick="verifica_formulario()">
+            <li><a href="{{ url_for('loginAdmin.loginAdmin') }}">LogAdmin</a>
         </form>
         {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}

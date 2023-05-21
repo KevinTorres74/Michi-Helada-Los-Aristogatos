@@ -44,28 +44,28 @@
     </style>
 </head>
     <body>
-    <div class="container">
-      <h1>Iniciar sesión como Administrador</h1>
-      <br>
-      <form action="/loginAdmin" method="post">
-        <input type="text" placeholder="Nombre" name="nombre" value="{{
-          request.form.nombre }}">
-         <input type="password" placeholder="Contraseña" name="contraseña" value="{{
-          request.form.contraseña }}">
-          <input type="email" placeholder="Correo" name="correo" value="{{
-          request.form.correo }}">
-        <input class="btn btn-default" type="submit" value="LoginAdmin">
-      </form>
-      {% if error %}
-        <p class="error"><strong>Error:</strong> {{ error }}
-      {% endif %}
-    </div>
-  <header>
+        <div class="container">
+        <h1>Iniciar sesión como Administrador</h1>
+        <br>
+        <form action="/loginAdmin" method="post">
+            <input type="text" placeholder="Nombre" name="nombre" value="{{
+                request.form.nombre }}">
+            <input type="password" placeholder="Contraseña" name="contraseña" value="{{
+                request.form.contraseña }}">
+            <input type="email" placeholder="Correo" name="correo" value="{{
+                request.form.correo }}">
+            <input class="btn btn-default" type="submit" value="LoginAdmin">
+        </form>
+        {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }}
+        {% endif %}
+        </div>
+    <header>
       {% block header %}{% endblock %}
-  </header>
-  {% for message in get_flashed_messages() %}
+    </header>
+    {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
-  </body>
+    {% endfor %}
+    {% block content %}{% endblock %}
+    </body>
 </html>

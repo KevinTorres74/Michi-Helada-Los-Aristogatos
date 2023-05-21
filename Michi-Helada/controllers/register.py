@@ -30,13 +30,14 @@ def register():
 
             if obten_cliente(id) != None:
                 session.clear()
-                session['cliente_id'] = cliente.nombre
+                session['cliente_id'] = cliente.id_cliente
+                session['cliente_nombre'] = cliente.nombre
                 g.user = cliente.nombre
             # Redirigir a una página de éxito o mostrar un mensaje de éxito
             return redirect(url_for("register.success"))
 
         else:
-            return render_template('register.html')
+                return render_template('register.html')
 
     except sqlalchemy.exc.DataError as e:
         return  render_template('register.html')

@@ -15,7 +15,7 @@ conexion = mysql.connector.connect(user='usuario', password='contraseña',
 cursor = conexion.cursor()
 
 # Ejecuta una consulta SQL para obtener el reporte de venta
-query = "SELECT fecha, producto, cantidad, precio FROM ventas"
+query = "SELECT fecha, producto.py, cantidad, precio FROM ventas"
 cursor.execute(query)
 
 # Obtiene los resultados de la consulta

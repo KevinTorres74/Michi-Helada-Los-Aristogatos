@@ -23,7 +23,8 @@ def loginAdmin():
             if administrador != None:
 
                 session.clear()
-                session['admin_id'] = administrador.nombre
+                session['admin_id'] = administrador.id_administrador
+                session['admin_nombre'] = administrador.nombre
                 return redirect(url_for("loginAdmin.success"))
             else:
                 return  render_template('loginAdmin.html')

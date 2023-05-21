@@ -3,9 +3,13 @@ from flask import Flask, redirect, url_for
 from alchemyClasses.cliente import db
 from controllers.register import registerBlueprint
 from controllers.loginAdmin import loginAdminBlueprint
+from controllers.agregarProducto import agregarProductoBlueprint
 from alchemyClasses.cliente import Cliente
 from datetime import datetime
 from models.model_cliente import agregar_cliente
+from werkzeug.utils import secure_filename
+
+
 
 
 try:
@@ -21,11 +25,13 @@ try:
 except pymysql.Error as e:
     print("Error al conectar a la base de datos:", e)
 
-
+UPLOAD_FOLDER = '/imagenes'
 app = Flask(__name__, instance_relative_config=True)
 app.register_blueprint(registerBlueprint)
 app.register_blueprint(loginAdminBlueprint)
+app.register_blueprint(agregarProductoBlueprint)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Josue318#@localhost:3306/ing_soft"
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config.from_mapping(
     SECRET_KEY = 'dev'
 )
