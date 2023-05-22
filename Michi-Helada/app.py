@@ -4,10 +4,14 @@ from alchemyClasses.cliente import db
 from controllers.register import registerBlueprint
 from controllers.loginAdmin import loginAdminBlueprint
 from controllers.agregarProducto import agregarProductoBlueprint
+#from controllers.verProductos import verProductoBlueprint
 from alchemyClasses.cliente import Cliente
 from datetime import datetime
 from models.model_cliente import agregar_cliente
 from werkzeug.utils import secure_filename
+from alchemyClasses.producto import Producto
+from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
+
 
 
 
@@ -30,6 +34,7 @@ app = Flask(__name__, instance_relative_config=True)
 app.register_blueprint(registerBlueprint)
 app.register_blueprint(loginAdminBlueprint)
 app.register_blueprint(agregarProductoBlueprint)
+#app.register_blueprint(verProductoBlueprint)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Josue318#@localhost:3306/ing_soft"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config.from_mapping(
@@ -40,12 +45,14 @@ db.init_app(app)
 
 @app.route('/', methods=['GET','POST'])
 def hello_world():
-    #nuevo_cliente = Cliente(id_cliente='None', nombre='Morales', correo='josuemt02@ciencias', telefono=55355416,
-     #                       fna=datetime(2002, 8, 19), contraseña='contr')
-    #db.session.add(nuevo_cliente)
-    #db.session.commit()
-    #agregar_cliente('None2', 'Josue Morales', 'josue@gmail.com', 35541645, datetime(2002, 8, 19), 'pruebas')
     return redirect(url_for('register.register'))
+
+@app.route('/tablaProductos')
+def tabla_productos():
+    productos = Producto.query.all()
+    columnas_excluidas = ['id_producto', 'id_administrador']
+    columnas_mostradas = [columna.name for columna in Producto.__table__.columns if columna.name not in columnas_excluidas]
+    return render_template('tabla_productos.html', getattr=getattr, productos=productos, columnas_mostradas=columnas_mostradas)
 
 if __name__ == '__main__':
     db.create_all()

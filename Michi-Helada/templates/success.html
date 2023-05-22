@@ -51,6 +51,8 @@
     {% if  session.get('admin_nombre') != None %}
       <li>Hola administrador <span>{{ session.get('admin_nombre') }}</span>
       <li><a href="{{ url_for('agregarProducto.agregarProducto') }}">Agregar producto</a>
+      <li><a href="{{ url_for('tabla_productos') }}">Agregar producto</a>
+
     {% endif %}
   </ul>
 </nav>

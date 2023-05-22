@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla de productos</title>
+</head>
+<body>
+    <table>
+  <thead>
+    <tr>
+      {% for columna in columnas_mostradas %}
+        <th>{{ columna }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for producto in productos %}
+      <tr>
+        {% for columna in columnas_mostradas %}
+          <td>{{ getattr(producto, columna) }}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</body>
+</html>
