@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de Venta</title>
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 100%;
+          font-size: 14px;
+        }
+        th, td {
+          text-align: center;
+          padding: 8px;
+          border-bottom: 1px solid #ddd;
+        }
+        th {
+          background-color: #f2f2f2;
+          color: #333;
+          font-weight: bold;
+        }
+        tr:hover {
+          background-color: #f5f5f5;
+        }
+        h1, h3 {
+          text-align: center;
+          margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <h1> Reporte de Venta</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Id Reporte De Venta </th>
+                <th> Id Cliente </th>
+                <th> Id Pedido </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for respuesta in respuesta %}
+            <tr>
+                <td> {{respuesta.id_reporteDeVenta}} </td>
+                <td> {{respuesta.id_cliente}} </td>
+                <td> {{respuesta.id_pedido}} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Total de registros = {{total}}</h3>
+</body>
+</html>
