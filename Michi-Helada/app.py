@@ -4,7 +4,7 @@ from alchemyClasses.cliente import db
 from controllers.register import registerBlueprint
 from controllers.loginAdmin import loginAdminBlueprint
 from controllers.agregarProducto import agregarProductoBlueprint
-#from controllers.verProductos import verProductoBlueprint
+from controllers.verProductos import verProductoBlueprint
 from alchemyClasses.cliente import Cliente
 from datetime import datetime
 from models.model_cliente import agregar_cliente
@@ -34,7 +34,7 @@ app = Flask(__name__, instance_relative_config=True)
 app.register_blueprint(registerBlueprint)
 app.register_blueprint(loginAdminBlueprint)
 app.register_blueprint(agregarProductoBlueprint)
-#app.register_blueprint(verProductoBlueprint)
+app.register_blueprint(verProductoBlueprint)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Josue318#@localhost:3306/ing_soft"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config.from_mapping(
@@ -47,12 +47,12 @@ db.init_app(app)
 def hello_world():
     return redirect(url_for('register.register'))
 
-@app.route('/tablaProductos')
-def tabla_productos():
-    productos = Producto.query.all()
-    columnas_excluidas = ['id_producto', 'id_administrador']
-    columnas_mostradas = [columna.name for columna in Producto.__table__.columns if columna.name not in columnas_excluidas]
-    return render_template('tabla_productos.html', getattr=getattr, productos=productos, columnas_mostradas=columnas_mostradas)
+#@app.route('/tablaProductos')
+#def tabla_productos():
+    #productos = Producto.query.all()
+    #columnas_excluidas = ['id_producto', 'id_administrador']
+    #columnas_mostradas = [columna.name for columna in Producto.__table__.columns if columna.name not in columnas_excluidas]
+    #return render_template('tabla_productos.html', getattr=getattr, productos=productos, columnas_mostradas=columnas_mostradas)
 
 if __name__ == '__main__':
     db.create_all()
