@@ -12,7 +12,7 @@
         }
 
         .container {
-            max-width: 700px;
+            max-width: 1000px;
             margin: 0 auto;
             margin-top: 300px;
             background-color: #fff;
@@ -66,7 +66,7 @@
 </head>
 <body>
   <div class="container">
-    <table>
+    <table style="float: left;" width="50%">
       <thead>
         <tr>
           {% for columna in columnas_mostradas %}
@@ -81,12 +81,29 @@
         {% for columna in columnas_mostradas %}
         <td>{{ getattr(producto, columna) }}</td>
         {% endfor %}
+        <td>
+        <a href="{{ url_for('actualizarProducto.actualizarProducto') }}?id_producto={{ producto.id_producto }}">
+          Actualizar
+        </a>
+      </td>
         </tr>
         {% endfor %}
       </tbody>
-    </table>
-  </div>
 
+    </table>
+ </div>
+        <div>
+        {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }}
+        {% endif %}
+        </div>
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
 
 </body>
 </html>

@@ -5,6 +5,7 @@ from controllers.register import registerBlueprint
 from controllers.loginAdmin import loginAdminBlueprint
 from controllers.agregarProducto import agregarProductoBlueprint
 from controllers.verProductos import verProductoBlueprint
+from controllers.actualizarProducto import actualizarProductoBlueprint
 from alchemyClasses.cliente import Cliente
 from datetime import datetime
 from models.model_cliente import agregar_cliente
@@ -35,6 +36,7 @@ app.register_blueprint(registerBlueprint)
 app.register_blueprint(loginAdminBlueprint)
 app.register_blueprint(agregarProductoBlueprint)
 app.register_blueprint(verProductoBlueprint)
+app.register_blueprint(actualizarProductoBlueprint)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Josue318#@localhost:3306/ing_soft"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config.from_mapping(

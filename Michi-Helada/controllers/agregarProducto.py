@@ -10,7 +10,6 @@ from alchemyClasses.__init__ import db
 import os
 UPLOAD_FOLDER = os.path.abspath('/imagenes')
 
-#from models.model_cliente import agregar_cliente
 agregarProductoBlueprint = Blueprint('agregarProducto', __name__, url_prefix='/agregarProducto')
 
 @agregarProductoBlueprint.route('/', methods=['GET','POST'])
