@@ -1,9 +1,11 @@
 from flask import Flask
 from controllers.eliminarProducto import eliminarProductoBlueprint
+from controllers.buscarCliente import buscarClienteBlueprint
 from alchemyClasses.producto import db
 
 app = Flask(__name__)
 app.register_blueprint(eliminarProductoBlueprint)
+app.register_blueprint(buscarClienteBlueprint)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://rosa:Rosa123!@localhost:3306/ing_soft'
 app.config.from_mapping(
     SECRET_KEY='dev'
