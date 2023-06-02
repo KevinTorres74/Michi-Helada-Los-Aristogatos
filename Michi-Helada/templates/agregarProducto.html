@@ -14,7 +14,7 @@
         .container {
             max-width: 250px;
             margin: 0 auto;
-            margin-top: 300px;
+            margin-top: 200px;
             background-color: #fff;
             padding: 40px;
             border-radius: 50px;
@@ -41,37 +41,112 @@
         .container form .btn-login {
             text-align: center;
         }
+
+        .button {
+                display: inline-block;
+                 padding: 10px 20px;
+                background-color: #ffc;
+                color: rgb(193,64,81);
+                text-decoration: none;
+                border-radius: 15px;
+                cursor: pointer;
+         }
+        .custom-button {
+            display: inline-block;
+                padding: 10px 20px;
+                background-color: #ffc;
+                color: rgb(193,64,81);
+                text-decoration: none;
+                border-radius: 15px;
+                cursor: pointer;
+        }
+        /* Estilos para la barra superior */
+    .top-bar {
+      background-color: rgba(193,71,20);
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px; /* Altura fija de la barra superior */
+    }
+
+    /* Estilos para la lista desplegable */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 200px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 12px 16px;
+      right: 0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Estilos para los enlaces dentro de la lista desplegable */
+    .dropdown-content a {
+      display: block;
+      color: #333;
+      padding: 8px 0;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
     </style>
 </head>
 <body>
+<div class="top-bar">
+    <h2>Michi-Helada</h2>
+    <div class="top-bar">
+    {% if  session.get('admin_nombre') != None %}
+      <div class="dropdown">
+        <span class="dropbtn">Menú</span>
+        <div class="dropdown-content">
+          <a href="{{ url_for('agregarProducto.agregarProducto') }}">Agregar producto</a>
+          <a href="{{ url_for('verProducto.verProducto') }}">Ver producto</a>
+          <a href="#">Enlace 3</a>
+        </div>
+      </div>
+    {% endif %}
+    </div>
+</div>
     <div class="container">
         <h1>Agegar Producto</h1>
         <br>
         <form action="/agregarProducto" method="post">
-            <input type="text" placeholder="Id" name="id_producto"  id="ID" value="{{request.form.id_producto }}">
-            <br>
 
             <input type="text" placeholder="Nombre" name="nombre"  id="NOMBRE" value="{{request.form.nombre }}">
             <br>
-
+            <br>
             <input type="Double" placeholder="Precio" name="precio" id="PRECIO" value="{{request.form.precio }}">
             <br>
-
+            <br>
             <input type="text" placeholder="Descripción" name="descripcion" id="DESCRIPCION" value="{{request.form.descripcion }}">
             <br>
-
-            <input type="text" placeholder="imagen" name="imagen" id="imagen"  value="{{request.form.imagen }}">
             <br>
-
+            <input type="file" placeholder="imagen" name="imagen" id="imagen"  value="{{request.form.imagen }}">
+            <br>
+            <br>
             <!-- <input type="tint" placeholder="Password" name="contraseña"  id="CONTRASEÑA" value="{{request.form.contraseña }}"> -->
             <a>Disponibilidad</a><select name="disponibilidad">
                 <option value="true">Sí</option>
                 <option value="false">No</option>
             </select>
-
+            <br>
             <br>
             <!-- <input class="btn btn-default" type="submit" value="Register"> -->
-            <input type="submit" value="Agregar Producto" onclick="verifica_formulario()">
+           <a href="{{ url_for('loginAdmin.success') }}" class="button">Regresar</a>
+            <input type="submit" value="Agregar Producto" class="custom-button" onclick="verifica_formulario()">
         </form>
         {% if error %}
             <p class="error"><strong>Error:</strong> {{ error }}

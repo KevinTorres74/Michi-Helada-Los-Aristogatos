@@ -12,6 +12,7 @@ from models.model_cliente import agregar_cliente
 from werkzeug.utils import secure_filename
 from alchemyClasses.producto import Producto
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
+import os
 
 
 
@@ -37,8 +38,12 @@ app.register_blueprint(loginAdminBlueprint)
 app.register_blueprint(agregarProductoBlueprint)
 app.register_blueprint(verProductoBlueprint)
 app.register_blueprint(actualizarProductoBlueprint)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Josue318#@localhost:3306/ing_soft"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Josue318#@localhost:3306/ing_soft2"
+UPLOAD_FOLDER = '/home/josuemt/PycharmProjects/Michi-Helada-Los-Aristogatos/Michi-Helada/imagenes'
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#app.config['UPLOAD_FOLDER'] = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'imagenes')
 app.config.from_mapping(
     SECRET_KEY = 'dev'
 )
@@ -49,12 +54,6 @@ db.init_app(app)
 def hello_world():
     return redirect(url_for('register.register'))
 
-#@app.route('/tablaProductos')
-#def tabla_productos():
-    #productos = Producto.query.all()
-    #columnas_excluidas = ['id_producto', 'id_administrador']
-    #columnas_mostradas = [columna.name for columna in Producto.__table__.columns if columna.name not in columnas_excluidas]
-    #return render_template('tabla_productos.html', getattr=getattr, productos=productos, columnas_mostradas=columnas_mostradas)
 
 if __name__ == '__main__':
     db.create_all()

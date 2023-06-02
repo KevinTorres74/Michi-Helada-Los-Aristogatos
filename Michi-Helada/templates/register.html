@@ -13,7 +13,7 @@
         .container {
             max-width: 400px;
             margin: 0 auto;
-            margin-top: 300px;
+            margin-top: 200px;
             background-color: #fff;
             padding: 40px;
             border-radius: 50px;
@@ -40,46 +40,180 @@
         .container form .btn-login {
             text-align: center;
         }
+        .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 200px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 12px 16px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Estilos para los enlaces dentro de la lista desplegable */
+    .dropdown-content a {
+      display: block;
+      color: #333;
+      padding: 8px 0;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+     /* Estilos para la barra superior */
+    .top-bar {
+      background-color: rgba(193,71,20);
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px; /* Altura fija de la barra superior */
+    }
+
+    /* Estilos para la lista desplegable */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 200px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 12px 16px;
+      right: 0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Estilos para los enlaces dentro de la lista desplegable */
+    .dropdown-content a {
+      display: block;
+      color: #333;
+      padding: 8px 0;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
     <script type="text/javascript">
+        var mensajes="";
         function validaNombre() {
             var NombreU = document.getElementById("NOMBRE").value;
             if(NombreU != ""){
                 return true;
             }else{
-                alert("Ingrese su nombre");
+                mensajes = mensajes + "Ingrese su nombre \n"
                 return false;
             }
         }
 
-        function validaNum () {
-            var cpU = document.getElementById("TELEFONO").value;
-                if(cpU != ""){
-                    if(isNaN(cpU)){
-                        alert("Sólo se aceptan datos de tipo numérico");
-                        return false;
-                    }else{
-                        return true;
-                    }
-                }else{
-                    alert("Ingrese el telefono");
+        function validaCorreo() {
+            var CorreoN = document.getElementById("CORREO").value;
+            if(CorreoN != ""){
+                return true;
+            }else{
+                mensajes = mensajes + "Ingrese su correo \n"
                 return false;
             }
+        }
+
+        function validaNum() {
+            var cpU = document.getElementById("TELEFONO").value;
+            if (cpU != "") {
+                if (isNaN(cpU)) {
+                    mensajes = mensajes + "Sólo se aceptan datos de tipo numérico \n";
+                    return false;
+                } else if (cpU.length > 8) {
+                    mensajes = mensajes + "Sólo se pueden insertar 8 dígitos \n";
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                mensajes = mensajes + "Ingrese su número \n";
+                return false;
+            }
+        }
+
+
+        function validaFechaNacimiento() {
+            var fechaNacimiento = document.getElementById("FNA").value;
+            if (fechaNacimiento === "") {
+                mensajes = mensajes + "Ingrese la fecha de nacimiento \n";
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function validaContraseña() {
+            var passwor = document.getElementById("CONTRASEÑA").value;
+            if(passwor != ""){
+                if(passwor<=7){
+                    mensajes = mensajes + "Su contraseña debe tener más carácteres\n"
+                    return false;
+                }else{
+                    return true;
+                }
+             }else{
+                mensajes = mensajes + "Ingrese su contraseña\n"
+                return false;
+             }
         }
 
         function verifica_formulario(){
+
+            mensajes = "";
+
             var nom = validaNombre();
+            var corr = validaCorreo();
             var num = validaNum();
-            if(nom==true && num==true){
+            var fna = validaFechaNacimiento();
+            var pass = validaContraseña();
+
+            if(nom==true && num==true && corr==true && fna==true && pass==true){
                 alert("Se ha registrado con éxito");
-                }
+             }else{
+                alert(mensajes);
+             }
         }
     </script>
 
 </head>
 <body>
+    <div class="top-bar">
+    <h2>Michi-Helada</h2>
+    <div class="top-bar">
+        <div class="dropdown">
+        <span class="dropbtn">Iniciar sesión como</span>
+        <div class="dropdown-content">
+          <a href="{{ url_for('loginAdmin.loginAdmin') }}">Administrador</a>
+
+          <a href="#">Enlace 3</a>
+        </div>
+      </div>
+    </div>
+</div>
     <div class="container">
         <h2>Registrarse al sistema</h2>
         <br>
@@ -87,26 +221,24 @@
 
         <form action="/register" method="post">
 
-            <input type="text" placeholder="Id" name="id_cliente"  id="ID" value="{{request.form.id_cliente }}">
-            <br>
 
             <input type="text" placeholder="Nombre" name="nombre"  id="NOMBRE" value="{{request.form.nombre }}">
             <br>
-
+            <br>
             <input type="Correo" placeholder="Correo" name="correo" id="CORREO" value="{{request.form.correo }}">
             <br>
-
+            <br>
             <input type="Integer" placeholder="Número" name="telefono" id="TELEFONO" value="{{request.form.telefono }}">
             <br>
-
+            <br>
             <input type="date" placeholder="Fecha de nacimiento" name="fna" id="FNA"  value="{{request.form.fna }}">
             <br>
-
+            <br>
             <input type="password" placeholder="Password" name="contraseña"  id="CONTRASEÑA" value="{{request.form.contraseña }}">
             <br>
+            <br>
             <!-- <input class="btn btn-default" type="submit" value="Register"> -->
-            <input type="submit" value="Register" onclick="verifica_formulario()">
-            <li><a href="{{ url_for('loginAdmin.loginAdmin') }}">LogAdmin</a>
+            <input type="submit" value="Registrarse" onclick="verifica_formulario()">
         </form>
         {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}

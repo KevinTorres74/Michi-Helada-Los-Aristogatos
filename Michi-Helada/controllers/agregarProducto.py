@@ -8,7 +8,6 @@ from models.model_producto import obten_producto
 from models.model_producto import agregar_producto
 from alchemyClasses.__init__ import db
 import os
-UPLOAD_FOLDER = os.path.abspath('/imagenes')
 
 agregarProductoBlueprint = Blueprint('agregarProducto', __name__, url_prefix='/agregarProducto')
 
@@ -16,33 +15,33 @@ agregarProductoBlueprint = Blueprint('agregarProducto', __name__, url_prefix='/a
 def agregarProducto():
 
     try:
+        UPLOAD_FOLDER = '/home/josuemt/PycharmProjects/Michi-Helada-Los-Aristogatos/Michi-Helada/imagenes'
         # Recibe los datos
         if request.method == 'POST':
 
-            id_producto = request.form['id_producto']
             id_adminstrador = session['admin_id']
             nombre = request.form['nombre']
             precio = request.form['precio']
             descripcion = request.form['descripcion']
-           # imagen = request.files['imagen']
-            imagen = request.form['imagen']
+            imagen = request.files['imagen']
+            #imagen = request.form['imagen']
             disponibilidad = bool(request.form.get('disponibilidad'))
 
-           # Guardar la imagen en la carpeta de carga
-       #     nombre_archivo = secure_filename(imagen.filename)
-        #    direccion_archivo = os.path.join(app.config['UPLOAD_FOLDER'], nombre_archivo)
-         #   imagen.save(direccion_archivo)
+            #Guardar la imagen en la carpeta de carga
+            nombre_archivo = secure_filename(imagen.filename)
+            direccion_archivo = os.path.join(UPLOAD_FOLDER, secure_filename(nombre_archivo))
+            imagen.save(direccion_archivo)
 
             # Actualizar el objeto Producto con la dirección de la imagen
             #producto.imagen = direccion_archivo
 
-            producto = Producto(id_producto=id_producto, id_administrador=id_adminstrador, nombre=nombre, precio=precio, descripcion=descripcion, imagen=imagen, disponibilidad=disponibilidad)
+            producto = Producto(id_administrador=id_adminstrador, nombre=nombre, precio=precio, descripcion=descripcion, imagen=direccion_archivo, disponibilidad=disponibilidad)
             #agregarProducto(producto)
             db.session.add(producto)
             db.session.commit()
 
 
-            if obten_producto(id_producto) != None:
+            if obten_producto(producto.id_producto) != None:
 
                 flash("Se agrego el producto a la base de datos")
                 return redirect(url_for("agregarProducto.success"))

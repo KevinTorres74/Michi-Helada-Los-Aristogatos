@@ -15,4 +15,4 @@ def verProducto():
     productos = Producto.query.all()
     columnas_excluidas = ['id_producto', 'id_administrador']
     columnas_mostradas = [columna.name for columna in Producto.__table__.columns if columna.name not in columnas_excluidas]
-    return render_template('tabla_productos.html', getattr=getattr, productos=productos, columnas_mostradas=columnas_mostradas)
+    return render_template('verProducto.html', getattr=getattr, productos=productos, columnas_mostradas=columnas_mostradas)
