@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Michi-Helada</title>
+
+    <style>
+        table, th, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td{
+            padding: 8px;
+        }
+        th{
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <table style="width: 70%">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Fecha de nacimiento</th>
+        </tr>
+        {% for vendedor in vendedores %}
+            <tr>
+                <td>{{ getattr(vendedor, 'id_vendedor') }}</td>
+                <td>{{ getattr(vendedor, 'nombre') }}</td>
+                <td>{{ getattr(vendedor, 'correo') }}</td>
+                <td>{{ getattr(vendedor, 'telefono') }}</td>
+                <td>{{ getattr(vendedor, 'fna') }}</td>
+                </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
