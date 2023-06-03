@@ -17,7 +17,7 @@ def register():
     try:
         # Recibe los datos
         if request.method == 'POST':
-            id = request.form['id_cliente']
+
             nombre = request.form['nombre']
             correo = request.form['correo']
             numero = request.form['telefono']
@@ -25,10 +25,10 @@ def register():
             contrasena = request.form['contraseña']
 
             # Agregar a la base de datos al cliente
-            cliente = Cliente(id_cliente=id, nombre=nombre, correo=correo, telefono=numero, fna=fnacimiento, contraseña=contrasena)
+            cliente = Cliente(nombre=nombre, correo=correo, telefono=numero, fna=fnacimiento, contraseña=contrasena)
             agregar_cliente(cliente)
 
-            if obten_cliente(id) != None:
+            if obten_cliente(cliente.id_cliente) != None:
                 session.clear()
                 session['cliente_id'] = cliente.id_cliente
                 session['cliente_nombre'] = cliente.nombre
