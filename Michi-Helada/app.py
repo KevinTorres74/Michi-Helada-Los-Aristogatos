@@ -2,6 +2,7 @@ from flask import Blueprint, flash, g, redirect, render_template, request, sessi
 import pymysql
 from flask_sqlalchemy import SQLAlchemy
 from alchemyClasses.__init__ import db
+from controllers.eliminarVendedor import eliminarVendedorBlueprint
 from controllers.agregarVendedor import agregarVendedorBlueprint
 
 app = Flask(__name__)
@@ -22,6 +23,7 @@ except pymysql.Error as e:
 
 app = Flask(__name__, instance_relative_config=True)
 app.register_blueprint(agregarVendedorBlueprint)
+app.register_blueprint(eliminarVendedorBlueprint)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Starmoon66680@localhost:3306/ing_soft"
 app.config.from_mapping(
     SECRET_KEY = 'dev'
@@ -35,4 +37,3 @@ def hello_world():
 
 if __name__ == '__main__':
     app.run(port = 3000, debug = True)
-

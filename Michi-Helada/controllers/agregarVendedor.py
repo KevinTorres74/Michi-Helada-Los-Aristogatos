@@ -14,7 +14,6 @@ def agregarVendedor():
     try:
         # Recibe los datos
         if request.method == 'POST':
-            id = request.form['id']
             nombre = request.form['nombre']
             correo = request.form['correo']
             numero = request.form['phone']
@@ -22,13 +21,13 @@ def agregarVendedor():
             contrasena = request.form['password']
 
             # Agregar a la base de datos de vendedor
-            vendedor = Vendedor(id_vendedor=id, nombre=nombre, correo=correo, telefono=numero, fna=fnacimiento, contraseña=contrasena)
+            vendedor = Vendedor(nombre=nombre, correo=correo, telefono=numero, fna=fnacimiento, contraseña=contrasena)
             db.session.add(vendedor)
             db.session.commit()
 
 
             #obtener vendedor
-            ans = Vendedor.query.filter(Vendedor.id_vendedor == id).first()
+            ans = Vendedor.query.filter(Vendedor.correo == correo).first()
 
             if ans != None:
                 session.clear()

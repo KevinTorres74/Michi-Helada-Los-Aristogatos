@@ -1,12 +1,67 @@
-<form action="/agregarVendedor" method="POST">
-    <input type="text" name="id" placeholder=" id ">
-    <input type="text" name="nombre" placeholder=" nombre ">
-    <input type="text" name="correo" placeholder=" correo ">
-    <input type="text" name="phone" placeholder=" telefono ">
-    <input type="date" name="fna" placeholder=" fecha de nacimiento ">
-    <input type="text" name="password" placeholder=" contraseña ">
-    <button type="submit">
-        Save
-    </button>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agregar Vendedor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to bottom, #c3eaff, #a9e1ff, #8ed9ff, #74d1ff, #59c8ff, #3fbfff, #24b7ff, #0aaeff, #00a6ff, #0092e5);
+        }
 
-</form>
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="text"],
+        input[type="date"],
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button[type="submit"] {
+            background-color: #00a6ff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0092e5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Agregar Vendedor</h1>
+    <div class="container">
+        <form action="/agregarVendedor" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="correo" placeholder="Correo" required>
+            <input type="text" name="phone" placeholder="Teléfono" required>
+            <input type="date" name="fna" placeholder="Fecha de nacimiento" required>
+            <input type="text" name="password" placeholder="Contraseña" required>
+            <button type="submit">Guardar</button>
+        </form>
+
+        <form action="{{ url_for('eliminarVendedor.eliminarVendedor') }}" method="GET">
+            <button type="submit">Ir a Eliminar Vendedor</button>
+        </form>
+    </div>
+</body>
+</html>
