@@ -20,10 +20,16 @@ Actualizar Vendedor
                 <input value="{{vendedor[4]}}" required type="date" class="input" placeholder="Fecha De Nacimiento" name="fna" id="fna">
                 <label for="pass">Contraseña</label>
                 <input value="{{vendedor[5]}}" required type="text" class="input" placeholder="Contraseña" name="pass" id="pass">
-                <button type="submit" class="button is-success mt-2">Guardar</button>
                 <a href="{{url_for('vendedores')}}" class="button is-primary mt-2">Volver</a>
+                <button type="submit" class="button is-success mt-2" onclick="showSuccessMessage()">Guardar</button>
             </form>
         </div>
     </div>
 </section>
+<!--mostrar mensaje de "accion correcta" al presionar boton de Guardar-->
+    <script>
+        function showSuccessMessage() {
+            alert('Cambio Exitoso!');
+        }
+    </script>
 {% endblock %}
