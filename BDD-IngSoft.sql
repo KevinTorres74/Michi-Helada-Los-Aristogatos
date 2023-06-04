@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `administrador`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `administrador` (
-  `id_administrador` varchar(200) NOT NULL,
+  `id_administrador` int auto_increment NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `correo` varchar(45) NOT NULL,
   `telefono` int NOT NULL,
@@ -50,9 +50,9 @@ DROP TABLE IF EXISTS `atender`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `atender` (
-  `id_vendedor` varchar(200) NOT NULL,
-  `id_pedido` varchar(200) NOT NULL,
-  `id_cliente` varchar(200) NOT NULL,
+  `id_vendedor` int NOT NULL,
+  `id_pedido` int NOT NULL,
+  `id_cliente` int NOT NULL,
   KEY `fk_vendedors_idx` (`id_vendedor`),
   KEY `fk_pedido_idx` (`id_pedido`),
   KEY `fk_clientesAt_idx` (`id_cliente`),
@@ -79,7 +79,7 @@ DROP TABLE IF EXISTS `cliente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cliente` (
-  `id_cliente` varchar(200) NOT NULL,
+  `id_cliente` int auto_increment NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `correo` varchar(45) NOT NULL,
   `telefono` int NOT NULL,
@@ -89,15 +89,6 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `cliente`
---
-
-LOCK TABLES `cliente` WRITE;
-/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES ('Concha','','',0,NULL,''),('Josemt','','',0,NULL,''),('Josuemt','','',0,NULL,'');
-/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `contener`
@@ -107,9 +98,9 @@ DROP TABLE IF EXISTS `contener`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contener` (
-  `id_producto` varchar(200) NOT NULL,
-  `id_cliente` varchar(200) NOT NULL,
-  `id_pedido` varchar(200) NOT NULL,
+  `id_producto` int NOT NULL,
+  `id_cliente` int NOT NULL,
+  `id_pedido` int NOT NULL,
   KEY `fk_product_1_idx` (`id_producto`),
   KEY `fk_client_1_idx` (`id_cliente`),
   KEY `fk_pedido_1_idx` (`id_pedido`),
@@ -136,10 +127,10 @@ DROP TABLE IF EXISTS `hacer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `hacer` (
-  `id_vendedor` varchar(200) NOT NULL,
-  `id_cliente` varchar(200) NOT NULL,
-  `id_reporteDeVenta` varchar(200) NOT NULL,
-  `id_pedido` varchar(200) NOT NULL,
+  `id_vendedor` int NOT NULL,
+  `id_cliente` int NOT NULL,
+  `id_reporteDeVenta` int NOT NULL,
+  `id_pedido` int NOT NULL,
   KEY `fk_hacer_vendedor_idx` (`id_vendedor`),
   KEY `fk_hacer_cliente_idx` (`id_cliente`),
   KEY `fk_hacer_reporte_idx` (`id_reporteDeVenta`),
@@ -168,9 +159,9 @@ DROP TABLE IF EXISTS `incluir`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `incluir` (
-  `id_insumo` varchar(200) NOT NULL,
-  `id_vendedor` varchar(200) NOT NULL,
-  `id_inventario` varchar(200) NOT NULL,
+  `id_insumo` int NOT NULL,
+  `id_vendedor` int NOT NULL,
+  `id_inventario` int NOT NULL,
   `diaDeCompra` date NOT NULL,
   `caducidad` date NOT NULL,
   `cantidad` int NOT NULL,
@@ -200,7 +191,7 @@ DROP TABLE IF EXISTS `insumo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `insumo` (
-  `id_insumo` varchar(200) NOT NULL,
+  `id_insumo` int auto_increment NOT NULL,
   `nombre` varchar(45) NOT NULL,
   PRIMARY KEY (`id_insumo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -223,8 +214,8 @@ DROP TABLE IF EXISTS `inventario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inventario` (
-  `id_inventario` varchar(200) NOT NULL,
-  `id_vendedor` varchar(200) NOT NULL,
+  `id_inventario` int auto_increment NOT NULL,
+  `id_vendedor` int NOT NULL,
   `fechaDeinventario` date NOT NULL,
   PRIMARY KEY (`id_inventario`),
   UNIQUE KEY `id_vendedor_UNIQUE` (`id_vendedor`),
@@ -249,8 +240,8 @@ DROP TABLE IF EXISTS `ocupar`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ocupar` (
-  `id_insumo` varchar(200) NOT NULL,
-  `id_producto` varchar(200) NOT NULL,
+  `id_insumo` int NOT NULL,
+  `id_producto` int NOT NULL,
   `cantidad` int NOT NULL,
   KEY `insumo_idx` (`id_insumo`),
   KEY `producto_idx` (`id_producto`),
@@ -276,8 +267,8 @@ DROP TABLE IF EXISTS `pedido`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pedido` (
-  `id_pedido` varchar(200) NOT NULL,
-  `id_cliente` varchar(200) NOT NULL,
+  `id_pedido` int auto_increment NOT NULL,
+  `id_cliente` int NOT NULL,
   `fecha_pedido` date NOT NULL,
   PRIMARY KEY (`id_pedido`),
   KEY `fk_clientes_idx` (`id_cliente`),
@@ -302,8 +293,8 @@ DROP TABLE IF EXISTS `producto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `producto` (
-  `id_producto` varchar(200) NOT NULL,
-  `id_administrador` varchar(200) NOT NULL,
+  `id_producto` int auto_increment NOT NULL,
+  `id_administrador` int NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `precio` double NOT NULL,
   `descripcion` varchar(200) DEFAULT NULL,
@@ -332,9 +323,9 @@ DROP TABLE IF EXISTS `reporteDeVenta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reporteDeVenta` (
-  `id_reporteDeVenta` varchar(200) NOT NULL,
-  `id_cliente` varchar(200) NOT NULL,
-  `id_pedido` varchar(200) NOT NULL,
+  `id_reporteDeVenta` int auto_increment NOT NULL,
+  `id_cliente` int NOT NULL,
+  `id_pedido` int NOT NULL,
   PRIMARY KEY (`id_reporteDeVenta`),
   UNIQUE KEY `idreporteDeVenta_UNIQUE` (`id_reporteDeVenta`),
   UNIQUE KEY `id_pedido_UNIQUE` (`id_pedido`),
@@ -361,7 +352,7 @@ DROP TABLE IF EXISTS `vendedor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vendedor` (
-  `id_vendedor` varchar(200) NOT NULL,
+  `id_vendedor` int auto_increment NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `correo` varchar(45) NOT NULL,
   `telefono` int NOT NULL,
