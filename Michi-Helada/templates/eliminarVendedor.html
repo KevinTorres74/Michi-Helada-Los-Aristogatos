@@ -65,7 +65,10 @@
             <button type="submit">Eliminar</button>
         </form>
         <br>
-        <a href="{{ url_for('agregarVendedor.agregarVendedor') }}"><button>Agregar Vendedor</button></a>
+        <div class="buttons-container">
+            <a href="{{ url_for('agregarVendedor.agregarVendedor') }}"><button>Agregar Vendedor</button></a>
+            <a href="{{ url_for('buscarVendedor.buscarVendedor') }}"><button>Buscar Vendedor</button></a>
+        </div>
     </div>
 </body>
 </html>

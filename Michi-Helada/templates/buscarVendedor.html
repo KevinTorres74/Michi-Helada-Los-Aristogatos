@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buscar Vendedor</title>
+    <style>
+        body {
+            background-image: linear-gradient(to bottom, #FFA7C4, #ED88A6, #D66989, #C04B6B, #A62D4D);
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #fff;
+        }
+        .container {
+            display: inline-block;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 300px;
+            height: 40px;
+            font-size: 16px;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+        button {
+            width: 120px;
+            height: 40px;
+            background-color: #FF4081;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #D81B60;
+        }
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+        }
+        .buttons-container a {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Buscar Vendedor</h1>
+    <div class="container">
+        <form action="/buscarVendedor" method="POST">
+            <input type="text" name="correo" placeholder="Correo electrónico" pattern="^[^@]+@[^@]+\.[^@]+$" title="Ingrese un correo válido, recuerde que se debe tener 1 vez el simbolo: @" required>
+            <button type="submit">Buscar</button>
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <div class="flash-message">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div class="buttons-container">
+        <a href="/agregarVendedor"><button>Agregar Vendedor</button></a>
+        <a href="/eliminarVendedor"><button>Eliminar Vendedor</button></a>
+    </div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} Successful register</title>
+<title>{% block title %}{% endblock %} ERROR</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -39,15 +39,9 @@
             text-align: center;
         }
     </style>
+
 <body>
-<nav>
-  <h1> Vendedor agregado correctamente!</h1>
-  <ul>
-    {% if  session.get('vendedor_nombre') != None %}
-      <li>Hay que darle la bienvenida a <span>{{ session.get('vendedor_nombre') }}</span></li>
-    {% endif %}
-  </ul>
-</nav>
+  <p>No se pudo agregar al vendedor correctamente, vuelve a intentarlo :(</p>
 <section class="content">
   <header>
     {% block header %}{% endblock %}
