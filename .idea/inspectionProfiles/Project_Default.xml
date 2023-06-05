@@ -1,0 +1,21 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="PyMYSQL" />
+          <option value="Alchemyclass.flask_sqlalchemy" />
+          <option value="pymysql.cursors" />
+          <option value="Alchemyclasses.ConsultaCliente.alchemyClasses" />
+          <option value="Alchemyclass.cc.*" />
+          <option value="Models.model_usuario.alchemyClasses" />
+          <option value="models.*" />
+          <option value="app.*" />
+          <option value="Controllers.login.alchemyClasses" />
+          <option value="Alchemyclass.cliente.alchemyClasses" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
