@@ -20,7 +20,7 @@ def convertir_a_binario(imagen):
 @agregarProductoBlueprint.route('/', methods=['GET','POST'])
 def agregarProducto():
     try:
-        UPLOAD_FOLDER = os.path.join(os.getcwd(), 'Michi-Helada', 'imagenes')
+#        UPLOAD_FOLDER = os.path.join(os.getcwd(), 'Michi-Helada', 'imagenes')
         # Recibe los datos
         if request.method == 'POST':
             id_adminstrador = session['admin_id']
@@ -31,8 +31,8 @@ def agregarProducto():
             imagen = request.form['imagen']
             disponibilidad = bool(request.form.get('disponibilidad'))
 
-            if not os.path.exists(UPLOAD_FOLDER):
-                os.makedirs(UPLOAD_FOLDER)
+           # if not os.path.exists(UPLOAD_FOLDER):
+            #    os.makedirs(UPLOAD_FOLDER)
            # flash(imagen.filename)
             #Guardar la imagen en la carpeta de carga
            # imagen = '/home/josuemt/Imágenes/Capturas de pantalla/michi.png'
