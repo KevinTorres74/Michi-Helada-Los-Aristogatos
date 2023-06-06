@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agregar Vendedor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to bottom, #c3eaff, #a9e1ff, #8ed9ff, #74d1ff, #59c8ff, #3fbfff, #24b7ff, #0aaeff, #00a6ff, #0092e5);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="text"],
+        input[type="date"],
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button[type="submit"] {
+            background-color: #00a6ff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0092e5;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            // Validación del formulario al enviar
+            document.querySelector('form').addEventListener('submit', function(event) {
+                var nombre = document.querySelector('input[name="nombre"]').value;
+                var telefono = document.querySelector('input[name="phone"]').value;
+                var fna = document.querySelector('input[name="fna"]').value;
+                var correo = document.querySelector('input[name="correo"]').value;
+
+                var errorMessages = [];
+
+                // Validación del nombre (no se permiten números)
+                if (/\d/.test(nombre)) {
+                    errorMessages.push('El nombre no puede contener números');
+                }
+
+                // Validación del teléfono (no se permiten letras)
+                if (/\D/.test(telefono)) {
+                    errorMessages.push('El teléfono no puede contener letras');
+                }
+
+                // Validación de la fecha de nacimiento
+                var currentDate = new Date();
+                var selectedDate = new Date(fna);
+                var minDate = new Date();
+                minDate.setFullYear(minDate.getFullYear() - 15);
+
+                if (selectedDate > currentDate) {
+                    errorMessages.push('La fecha de nacimiento no puede ser posterior a la fecha actual');
+                }
+
+                if (selectedDate > minDate) {
+                    errorMessages.push('Debes tener al menos 15 años de edad');
+                }
+
+                // Validación del correo (debe tener el símbolo @ solo una vez)
+                var atSymbolCount = correo.split('@').length - 1;
+
+                if (atSymbolCount !== 1) {
+                    errorMessages.push('El correo debe contener el símbolo @ una vez');
+                }
+
+                // Si hay errores, se muestra el mensaje y se cancela el envío del formulario
+                if (errorMessages.length > 0) {
+                    event.preventDefault();
+                    var errorContainer = document.querySelector('.error-message');
+                    errorContainer.innerHTML = errorMessages.join('<br>');
+                    errorContainer.style.display = 'block';
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <h1>Agregar Vendedor</h1>
+    <div class="container">
+        <form action="/agregarVendedor" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="correo" placeholder="Correo" required>
+            <input type="text" name="phone" placeholder="Teléfono" required>
+            <input type="date" name="fna" placeholder="Fecha de nacimiento" required>
+            <input type="text" name="password" placeholder="Contraseña" required>
+            <button type="submit">Guardar</button>
+        </form>
+
+        <form action="{{ url_for('eliminarVendedor.eliminarVendedor') }}" method="GET">
+            <button type="submit">Eliminar Vendedor</button>
+        </form>
+
+        <form action="{{ url_for('buscarVendedor.buscarVendedor') }}" method="GET">
+            <button type="submit">Buscar Vendedor</button>
+        </form>
+
+        <!-- Mensaje de error -->
+        <div class="error-message" style="display: none;"></div>
+    </div>
+</body>
+</html>
