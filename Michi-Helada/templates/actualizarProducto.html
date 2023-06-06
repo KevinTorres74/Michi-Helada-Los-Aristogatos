@@ -5,6 +5,10 @@
     <title>Actualizar Producto</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
      <style>
         body {
 
@@ -12,9 +16,9 @@
         }
 
         .container {
-            max-width: 300px;
+            max-width: 450px;
             margin: 0 auto;
-            margin-top: 200px;
+            margin-top: 100px;
             background-color: #fff;
             padding: 40px;
             border-radius: 50px;
@@ -179,7 +183,9 @@
         <div class="dropdown-content">
           <a href="{{ url_for('agregarProducto.agregarProducto') }}">Agregar producto</a>
           <a href="{{ url_for('verProducto.verProducto') }}">Ver producto</a>
-          <a href="#">Enlace 3</a>
+          <a href="/agregarVendedor">Agregar Vendedor </a>
+          <a href="{{ url_for('eliminarVendedor.eliminarVendedor') }}">Eliminar Vendedor</a>
+          <a href="{{ url_for('buscarVendedor.buscarVendedor') }}">Buscar Vendedor</a>
         </div>
       </div>
     {% endif %}
