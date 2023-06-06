@@ -7,6 +7,7 @@ import pymysql
 from alchemyClasses.cliente import db
 from controllers.register import registerBlueprint
 from controllers.loginAdmin import loginAdminBlueprint
+from controllers.loginCliente import loginClienteBlueprint
 from controllers.agregarProducto import agregarProductoBlueprint
 from controllers.verProductos import verProductoBlueprint
 from controllers.actualizarProducto import actualizarProductoBlueprint
@@ -127,6 +128,7 @@ def not_found(error):
 app = Flask(__name__, instance_relative_config=True)
 app.register_blueprint(registerBlueprint)
 app.register_blueprint(loginAdminBlueprint)
+app.register_blueprint(loginClienteBlueprint)
 app.register_blueprint(agregarProductoBlueprint)
 app.register_blueprint(verProductoBlueprint)
 app.register_blueprint(actualizarProductoBlueprint)
