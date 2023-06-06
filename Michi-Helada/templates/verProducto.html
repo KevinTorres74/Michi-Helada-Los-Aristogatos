@@ -1,7 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>{% block title %}{% endblock %} Successful register</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Tabla de productos</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -10,13 +12,11 @@
         }
 
         .container {
-            max-width: 400px;
+            max-width: 850px;
             margin: 0 auto;
-            margin-top: 300px;
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 50px;
-            box-shadow: 15px 15px 10px 0px rgba(0,0,0,0.1);
+            margin-top: 200px;
+            padding: 90px;
+
         }
 
         .container h2 {
@@ -40,10 +40,46 @@
             text-align: center;
         }
 
+        thead {
+          background: rgba(243, 140, 210, 0.4);
+        }
 
+        th {
+          padding: 20px 15px;
+          font-weight:700;
+          text-transform: uppercase;
+         }
 
+        td {
+          padding: 15ps;
+          border-bottom: solid 1px rgba(255, 255, 255, 0.2);
+        }
 
-    /* Estilos para la barra superior */
+        tbody tr:hover {
+          background: rgba(243, 103, 199, 0.4);
+        }
+
+         table {
+            background-color: white;
+            width: 100%;
+         }
+         .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+           }
+
+         .button {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #ffc;
+                color: rgb(193,64,81);
+                text-decoration: none;
+                border-radius: 15px;
+                cursor: pointer;
+         }
+
+         /* Estilos para la barra superior */
     .top-bar {
       background-color: rgba(193,71,20);
       color: #fff;
@@ -86,6 +122,7 @@
       background-color: #ddd;
     }
 
+
     </style>
 </head>
 <body>
@@ -104,28 +141,51 @@
     {% endif %}
     </div>
 </div>
-<nav>
+  <div class="container">
+    <table style="float: left;" width="50%">
+      <thead>
+        <tr>
+          {% for columna in columnas_mostradas %}
+            <th>{{ columna }}</th>
+          {% endfor %}
+            <th> Actualizar</th>
+        </tr>
+      </thead>
+      <tbody>
 
-  <ul>
-    {% if  session.get('cliente_id') != None %}
-      <li>Hello <span>{{ session.get('cliente_nombre') }}</span>
+        {% for producto in productos %}
+        <tr>
+        {% for columna in columnas_mostradas %}
+        <td>{{ getattr(producto, columna) }}</td>
+        {% endfor %}
+        <td>
+        <a href="{{ url_for('actualizarProducto.actualizarProducto') }}?id_producto={{ producto.id_producto }}">
+          Actualizar
+        </a>
+      </td>
+        </tr>
+        {% endfor %}
+      </tbody>
 
-    {% endif %}
-  </ul>
-  <ul>
-    {% if  session.get('admin_nombre') != None %}
-      <li>Hola administrador <span>{{ session.get('admin_nombre') }}</span>
+    </table>
+ </div>
+  <br>
+  <div class="button-container">
+  <a href="{{ url_for('loginAdmin.success') }}" class="button">Regresar</a>
 
-    {% endif %}
-  </ul>
-</nav>
-<section class="content">
-  <header>
-    {% block header %}{% endblock %}
-  </header>
-  {% for message in get_flashed_messages() %}
+</div>
+        <div>
+        {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }}
+        {% endif %}
+        </div>
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
-</section>
+    {% endfor %}
+    {% block content %}{% endblock %}
+
 </body>
+</html>

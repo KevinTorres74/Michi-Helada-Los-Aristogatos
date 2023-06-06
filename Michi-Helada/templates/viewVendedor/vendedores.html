@@ -1,0 +1,39 @@
+{% extends "viewVendedor/base.html" %}
+{% block titulo %} Vendedor {% endblock %}
+{% block contenido %}
+
+<section class="section">
+    <div class="columns">
+        <div class="column">
+            <h3 class="is-size-3">Vendedores</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Telefono</th>
+                        <th>Fecha De Nacimiento</th>
+                        <th>Contraseña</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for vendedor in vendedores %}
+                    <tr>
+                        <td>{{vendedor[1]}}</td>
+                        <td>{{vendedor[2]}}</td>
+                        <td>{{vendedor[3]}}</td>
+                        <td>{{vendedor[4]}}</td>
+                        <td>{{vendedor[5]}}</td>
+                        <td>
+                            {# Pasar el id (lo que hay en vendedor[0] #}
+                            <a href="{{url_for('editar_vendedor', id=vendedor[0])}}" class="button is-info">Editar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

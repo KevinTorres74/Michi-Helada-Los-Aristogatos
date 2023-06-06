@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultar Cliente</title>
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 100%;
+          font-size: 14px;
+        }
+        th, td {
+          text-align: center;
+          padding: 8px;
+          border-bottom: 1px solid #ddd;
+        }
+        th {
+          background-color: #f2f2f2;
+          color: #333;
+          font-weight: bold;
+        }
+        tr:hover {
+          background-color: #f5f5f5;
+        }
+        h1, h3 {
+          text-align: center;
+          margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <h1> Lista De Clientes </h1>
+    <table>
+        <thead>
+            <tr>
+                <th> Id De Cliente </th>
+                <th> Nombre </th>
+                <th> Correo </th>
+                <th> Telefono </th>
+                <th> Fecha De Nacimiento </th>
+                <th> Contraseña </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for respuesta1 in respuesta1 %}
+            <tr>
+                <td> {{respuesta1.id_cliente}} </td>
+                <td> {{respuesta1.nombre}} </td>
+                <td> {{respuesta1.correo}} </td>
+                <td> {{respuesta1.telefono}} </td>
+                <td> {{respuesta1.fna}} </td>
+                <td> {{respuesta1.contraseña}} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Total De Clientes = {{total1}}</h3>
+</body>
+</html>
