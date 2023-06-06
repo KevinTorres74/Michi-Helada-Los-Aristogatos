@@ -4,16 +4,18 @@ from alchemyClasses.consultar_cliente import *
 from controllers import controlador_vendedor, controlador_upd_pass
 
 import pymysql
-from flask import Flask, redirect, url_for
 from alchemyClasses.cliente import db
 from controllers.register import registerBlueprint
 from controllers.loginAdmin import loginAdminBlueprint
 from controllers.agregarProducto import agregarProductoBlueprint
 from controllers.verProductos import verProductoBlueprint
 from controllers.actualizarProducto import actualizarProductoBlueprint
+from controllers.eliminarVendedor import eliminarVendedorBlueprint
+from controllers.agregarVendedor import agregarVendedorBlueprint
+from controllers.buscarVendedor import buscarVendedorBlueprint
+from controllers.verVendedor import verVendedorBlueprint
 from alchemyClasses.cliente import Cliente
-from datetime import datetime
-from models.model_cliente import agregar_cliente
+#from models.model_cliente import agregar_cliente
 from werkzeug.utils import secure_filename
 from alchemyClasses.producto import Producto
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for

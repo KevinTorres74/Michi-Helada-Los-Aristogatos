@@ -7,8 +7,12 @@ Consultar reporte de venta-Administrador
 """
 
 # Conexion a la base de datos
-conexion = pymysql.connect(user='root', password='guadalupe',
-                           host='localhost', database='bdd-ingsoft',
+#conexion = pymysql.connect(user='root', password='guadalupe',
+#                           host='localhost', database='bdd-ingsoft',
+#                           cursorclass=pymysql.cursors.DictCursor)
+
+conexion = pymysql.connect(host='localhost', user='root', password='Josue318#',
+                           database='ing_soft2',
                            cursorclass=pymysql.cursors.DictCursor)
 
 """
@@ -27,7 +31,8 @@ conexion.close()
 """
 with conexion:
     with conexion.cursor() as cursor:
-        query = "SELECT * FROM reportedeventa"
+        #query = "SELECT * FROM reportedeventa"
+        query = "SELECT * FROM reporteDeVenta"
         cursor.execute(query)
         respuesta = cursor.fetchall()
         total = cursor.rowcount
