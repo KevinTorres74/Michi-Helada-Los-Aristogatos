@@ -35,7 +35,7 @@ def success():
     if session.get('cliente_id') != None:
         return render_template("success.html")
     flash("ERROR: Cookie de sesion vacia")
-    return redirect(url_for('loginCliente.loginCliente'))
+    return redirect(url_for('register.register'))
 
 @loginClienteBlueprint.route("/failure", methods=["GET"])
 def failure():

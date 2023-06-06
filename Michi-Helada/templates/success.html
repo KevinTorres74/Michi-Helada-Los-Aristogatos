@@ -97,16 +97,22 @@
 <div class="top-bar">
     <h2>Michi-Helada</h2>
     <div class="top-bar">
+         <div class="dropdown">
+        <span class="dropbtn">cliente</span>
+            <div class="dropdown-content">
+                <a href="{{ url_for('buscarCliente.buscarCliente') }}">Buscar cliente</a>
+            </div>
+        </div>
+    <div class="button-separator"></div>
+          {% if  session.get('admin_nombre') != None %}
        <div class="dropdown">
         <span class="dropbtn">vendedor</span>
-        <div class="dropdown-content">
-          <a href="{{ url_for('buscarCliente.buscarCliente') }}">Buscar cliente</a>
-          <a href="{{ url_for('verCliente.verCliente') }}">Ver cliente</a>
-
+            <div class="dropdown-content">
+                <a href="{{ url_for('buscarCliente.buscarCliente') }}">Buscar cliente</a>
+            </div>
         </div>
-      </div>
-      <div class="button-separator"></div>
-    {% if  session.get('admin_nombre') != None %}
+    <div class="button-separator"></div>
+
       <div class="dropdown">
         <span class="dropbtn">Menú</span>
         <div class="dropdown-content">
