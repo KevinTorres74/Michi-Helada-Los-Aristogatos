@@ -16,6 +16,7 @@ from controllers.buscarVendedor import buscarVendedorBlueprint
 from controllers.verVendedor import verVendedorBlueprint
 from controllers.eliminarProducto import eliminarProductoBlueprint
 from controllers.buscarCliente import buscarClienteBlueprint
+from controllers.verCliente import verClienteBlueprint
 from controllers.eliminarCuenta import eliminarCuentaBlueprint
 from controllers.verVendedor import verVendedorBlueprint
 from alchemyClasses.producto import db
@@ -136,6 +137,7 @@ app.register_blueprint(verVendedorBlueprint)
 app.register_blueprint(agregarVendedorBlueprint)
 app.register_blueprint(eliminarVendedorBlueprint)
 app.register_blueprint(buscarVendedorBlueprint)
+app.register_blueprint(verClienteBlueprint)
 #app.register_blueprint(verVendedorBlueprint)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Josue318#@localhost:3306/ing_soft2"
 app.config.from_mapping(
