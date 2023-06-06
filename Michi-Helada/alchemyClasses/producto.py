@@ -4,7 +4,6 @@ from sqlalchemy import ForeignKey
 class Producto(db.Model):
     __tablename__ = 'producto'
 
-    #id_producto = db.Column('id_producto', db.String(200), primary_key=True)
     id_producto = db.Column('id_producto', db.Integer, primary_key=True, autoincrement=True)
     id_administrador = db.Column('id_administrador', db.Integer, ForeignKey('administrador.id_administrador'))
     nombre = db.Column('nombre', db.String(45))
@@ -13,9 +12,7 @@ class Producto(db.Model):
     imagen = db.Column('imagen', db.String(200))
     disponibilidad = db.Column('disponibilidad', db.Boolean)
 
-
     def __init__(self, id_administrador, nombre, precio, descripcion, imagen, disponibilidad):
-        #self.id_producto = id_producto
         self.id_administrador = id_administrador
         self.nombre = nombre
         self.precio = precio

@@ -5,6 +5,7 @@ class Vendedor(db.Model):
     __tablename__ = 'vendedor'
 
     id_vendedor = db.Column('id_vendedor', db.Integer, primary_key=True, autoincrement=True)
+   # id_vendedor = db.Column('id_vendedor', db.String(200), primary_key=True)
     nombre = db.Column('nombre', db.String(45))
     correo = db.Column('correo', db.String(45))
     telefono = db.Column('telefono', db.Integer)

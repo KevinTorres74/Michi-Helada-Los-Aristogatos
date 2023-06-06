@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Michi-Helada</title>
+
+    <style>
+        table, th, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td{
+            padding: 8px;
+        }
+        th{
+            text-align: left;
+        }
+    </style>
+
+</head>
+<body>
+    <table style="width: 70%">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Fecha de nacimiento</th>
+        </tr>
+        <tr>
+            <td>{{ getattr(cliente, 'id_cliente') }}</td>
+            <td>{{ getattr(cliente, 'nombre') }}</td>
+            <td>{{ getattr(cliente, 'correo') }}</td>
+            <td>{{ getattr(cliente, 'telefono') }}</td>
+            <td>{{ getattr(cliente, 'fna') }}</td>
+        </tr>
+    </table>
+    <br>
+    <li><a href="{{ url_for('buscarCliente.buscarCliente') }}">Buscar otro cliente</a></li>
+</body>
+</html>
