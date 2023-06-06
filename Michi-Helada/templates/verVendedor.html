@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ver Vendedor</title>
+    <style>
+        body {
+            background-color: #F5F5F5;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #666;
+        }
+        p {
+            color: #888;
+        }
+        .container {
+            display: inline-block;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .buttons-container a {
+            margin: 0 10px;
+        }
+        button {
+            width: 120px;
+            height: 40px;
+            background-color: #FFC107;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #FFA000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ver Vendedor</h1>
+    <div class="container">
+        <h2>Datos del Vendedor:</h2>
+        <p>ID: {{ vendedor.id_vendedor }}</p>
+        <p>Nombre: {{ vendedor.nombre }}</p>
+        <p>Correo: {{ vendedor.correo }}</p>
+        <p>Teléfono: {{ vendedor.telefono }}</p>
+        <p>Fecha de Nacimiento: {{ vendedor.fna }}</p>
+        <p>Contraseña: {{ vendedor.contraseña }}</p>
+    </div>
+    <div class="buttons-container">
+        <a href="/agregarVendedor"><button>Agregar Vendedor</button></a>
+        <a href="/eliminarVendedor"><button>Eliminar Vendedor</button></a>
+    </div>
+</body>
+</html>
