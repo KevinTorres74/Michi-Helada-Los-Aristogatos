@@ -61,15 +61,19 @@ def not_found(error):
 # Actualizar Vendedor --> Administrador.
 
 # Se define la ruta para ver a todos los vendedores.
-@app.route("/")
-@app.route("/vendedores")
+#@app.route("/")
+#@app.route("/vendedores")
+vendedoresKevBlueprint = Blueprint('vendedores', __name__, url_prefix='/vendedores')
+@vendedoresKevBlueprint.route('/')
 def vendedores():
     vendedores = controlador_vendedor.obtener_vendedores()
     return render_template("viewVendedor/vendedores.html", vendedores=vendedores)
 
 
 # Se define la ruta para modificar a un vendedor.
-@app.route("/formulario_editar_vendedor/<int:id>")
+#@app.route("/formulario_editar_vendedor/<int:id>")
+editarVendedorKevBlueprint = Blueprint('editarVendedor', __name__, url_prefix='/editarVendedor')
+editarVendedorKevBlueprint.route('/')
 def editar_vendedor(id):
     # Obtener el vendedor por ID
     vendedor = controlador_vendedor.obtener_vendedor_por_id(id)
@@ -77,7 +81,9 @@ def editar_vendedor(id):
 
 
 # Se define la ruta para actualizar los datos de un vendedor.
-@app.route("/actualizar_vendedor", methods=["POST"])
+#@app.route("/actualizar_vendedor", methods=["POST"])
+actualizarVendedorKevBlueprint = Blueprint('actualizarVendedor', __name__, url_prefix='/actualizarVendedor')
+actualizarVendedorKevBlueprint.route('/')
 def actualizar_vendedor():
     id = request.form["id"]
     nombre = request.form["nombre"]
@@ -138,6 +144,9 @@ app.register_blueprint(agregarVendedorBlueprint)
 app.register_blueprint(eliminarVendedorBlueprint)
 app.register_blueprint(buscarVendedorBlueprint)
 app.register_blueprint(verClienteBlueprint)
+app.register_blueprint(vendedoresKevBlueprint)
+app.register_blueprint(editarVendedorKevBlueprint)
+app.register_blueprint(actualizarVendedorKevBlueprint)
 #app.register_blueprint(verVendedorBlueprint)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Josue318#@localhost:3306/ing_soft2"
 app.config.from_mapping(
