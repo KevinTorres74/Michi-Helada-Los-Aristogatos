@@ -8,9 +8,7 @@ from alchemyClasses.producto import Producto
 from models.model_producto import obten_producto
 from models.model_producto import agregar_producto
 from alchemyClasses.__init__ import db
-import os
-from io import BytesIO
-from PIL import Image, ImageOps
+
 
 agregarProductoBlueprint = Blueprint('agregarProducto', __name__, url_prefix='/agregarProducto')
 
@@ -20,7 +18,7 @@ def convertir_a_binario(imagen):
 @agregarProductoBlueprint.route('/', methods=['GET','POST'])
 def agregarProducto():
     try:
-#        UPLOAD_FOLDER = os.path.join(os.getcwd(), 'Michi-Helada', 'imagenes')
+
         # Recibe los datos
         if request.method == 'POST':
             id_adminstrador = session['admin_id']
@@ -31,28 +29,8 @@ def agregarProducto():
             imagen = request.form['imagen']
             disponibilidad = bool(request.form.get('disponibilidad'))
 
-           # if not os.path.exists(UPLOAD_FOLDER):
-            #    os.makedirs(UPLOAD_FOLDER)
-           # flash(imagen.filename)
-            #Guardar la imagen en la carpeta de carga
-           # imagen = '/home/josuemt/Imágenes/Capturas de pantalla/michi.png'
-            #img = Image.open(imagen)
-           # with open(imagen, "rb") as image_file:
-            #    encoded_string = base64.b64encode(image_file.read())
-
-          #  img.save(UPLOAD_FOLDER)
-            #nombre_archivo = secure_filename(imagen.filename)
-            #direccion_archivo = UPLOAD_FOLDER + '/' + nombre_archivo
-            #imagen.save(direccion_archivo)
-            #img.save(UPLOAD_FOLDER + '/' + imagen.filename)
-
-        #imagen_bi = convertir_a_binario(imagen)
-            #imagen_bytes = imagen.readSS()
-            # Actualizar el objeto Producto con la dirección de la imagen
-            #producto.imagen = direccion_archivo
-
+            #Se crea el producto
             producto = Producto(id_administrador=id_adminstrador, nombre=nombre, precio=precio, descripcion=descripcion, imagen=imagen, disponibilidad=disponibilidad)
-            #agregarProducto(producto)
             db.session.add(producto)
             db.session.commit()
 
