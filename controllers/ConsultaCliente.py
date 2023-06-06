@@ -1,35 +1,33 @@
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
 from flask import request
 from alchemyClasses.Cliente import Cliente
-from models.model_cliente import obten_cliente
+from models.ModelsCliente import obten_cliente
 from alchemyClasses.Cliente import db
 
-consultaclienteBlueprint = Blueprint('consultacliente', __name__, url_prefix='/consultacliente')
+# Crear el Blueprint para la consulta de clientes
+consulta_cliente_blueprint = Blueprint('consulta_cliente', __name__)
 
 
-@consultaclienteBlueprint.route('/', methods=["GET", "POST"])
-def consultacliente():
-    if request.method == "POST":
-    # Recibe datos
-    id_cliente = request.form["id_cliente"]
-    cliente = obten_cliente(id_cliente)
+# Ruta para la página de consulta de clientes
+@consulta_cliente_blueprint.route('/consulta-cliente', methods=['GET'])
+def consulta_cliente():
+    return render_template('Consultacliente.html')
 
 
-if Cliente != None:
-    print("Cliente consultado")
-    return render_template(Consultaclientesucces.html
-    ')
-    else:
-    print("Cliente no consultado" + str(id_cliente) + ".")
+# Ruta para procesar la consulta de clientes
+@consulta_cliente_blueprint.route('/consulta-cliente', methods=['POST'])
+def procesar_consulta_cliente():
+    # Obtener los datos enviados desde el formulario
+    id_cliente = request.form.get('id_cliente')
 
-return redirect(url_for('Consultacliente.failure'))
+    # Aquí puedes implementar la lógica para buscar el cliente en la base de datos o hacer cualquier otra operación
 
-else:
-return render_template('Consultacliente.html')
+    # Simplemente retornamos los datos del cliente como ejemplo
+    cliente = {
+        'id_cliente': id_cliente,
+        'nombre': 'John Doe',
+        'email': 'johndoe@example.com',
+        'telefono': '1234567890'
+    }
 
-
-# Si existen los datos: acepta
-# Si no existen: rechaza
-@consultaclienteBlueprint.route('/failure', methods=["GET"])
-def failure():
-    return render_template("consultacliente.html.html")
+    return render_template('Consultaclientesucces.html', cliente=cliente)
