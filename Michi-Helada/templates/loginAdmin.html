@@ -158,21 +158,6 @@
         <div class="top-bar">
     <h2>Michi-Helada</h2>
     <div class="top-bar">
-    {% if  session.get('admin_nombre') != None %}
-      <div class="dropdown">
-        <span class="dropbtn">Menú</span>
-        <div class="dropdown-content">
-          <a href="{{ url_for('agregarProducto.agregarProducto') }}">Agregar producto</a>
-          <a href="{{ url_for('eliminarProducto.eliminarProducto') }}">Eliminar producto</a>
-          <a href="{{ url_for('verProducto.verProducto') }}">Ver producto</a>
-          <a href="{{ url_for('vendedores.viewVendedor/vendedores') }}">Actualizar Vendedor</a>
-          <a href="{{ url_for('verVendedor.verVendedor') }}">Ver Vendedor</a>
-          <a href="{{ url_for('mostrar_reporte_venta.viewReporte/reporte') }}">Consultar reporte de venta</a>
-          <a href="{{ url_for('mostrar_consulta_cliente.viewCliente/selCliente') }}">Consultar Cliente</a>
-          <a href="#">Enlace 3</a>
-        </div>
-      </div>
-    {% endif %}
     </div>
 </div>
         <div class="container">

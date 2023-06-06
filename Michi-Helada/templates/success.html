@@ -86,6 +86,9 @@
       background-color: #ddd;
     }
 
+    .button-separator {
+  width: 1cm;
+}
     </style>
 </head>
 <body>
@@ -94,6 +97,15 @@
 <div class="top-bar">
     <h2>Michi-Helada</h2>
     <div class="top-bar">
+       <div class="dropdown">
+        <span class="dropbtn">vendedor</span>
+        <div class="dropdown-content">
+          <a href="{{ url_for('agregarProducto.agregarProducto') }}">Agregar producto</a>
+          <a href="{{ url_for('eliminarProducto.eliminarProducto') }}">Eliminar producto</a>
+
+        </div>
+      </div>
+      <div class="button-separator"></div>
     {% if  session.get('admin_nombre') != None %}
       <div class="dropdown">
         <span class="dropbtn">Menú</span>
@@ -104,7 +116,7 @@
           <a href="/agregarVendedor">Agregar Vendedor </a>
           <a href="{{ url_for('eliminarVendedor.eliminarVendedor') }}">Eliminar Vendedor</a>
           <a href="{{ url_for('buscarVendedor.buscarVendedor') }}">Buscar Vendedor</a>
-          <a href="{{ url_for('verVendedor.verVendedor') }}">Ver Vendedor</a>
+          <!--<a href="{{ url_for('verVendedor.verVendedor') }}">Ver Vendedor</a>-->
         </div>
       </div>
     {% endif %}

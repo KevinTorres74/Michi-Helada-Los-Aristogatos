@@ -147,16 +147,7 @@ db.init_app(app)
 def hello_world():
     return redirect(url_for('register.register'))
 
-#app = Flask(__name__, instance_relative_config=True)
-#app.register_blueprint(agregarVendedorBlueprint)
-#app.register_blueprint(eliminarVendedorBlueprint)
-#app.register_blueprint(buscarVendedorBlueprint)
-#app.register_blueprint(verVendedorBlueprint)
-#app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Starmoon66680@localhost:3306/ing_soft"
-#app.config.from_mapping(
- #   SECRET_KEY = 'dev'
-#)
-#db.init_app(app)
+
 
 
 @app.route('/', methods=['GET','POST'])
