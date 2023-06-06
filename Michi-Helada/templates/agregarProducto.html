@@ -103,6 +103,72 @@
       background-color: #ddd;
     }
     </style>
+
+     <script type="text/javascript">
+        var mensajes="";
+        function validaNombre() {
+            var NombreU = document.getElementById("NOMBRE").value;
+            if(NombreU != ""){
+                return true;
+            }else{
+                mensajes = mensajes + "Ingrese el nombre del producto \n"
+                return false;
+            }
+        }
+
+        function validaPrecio() {
+            var cpU = document.getElementById("PRECIO").value;
+            if (cpU != "") {
+                if (isNaN(cpU)) {
+                    mensajes = mensajes + "Sólo se aceptan datos de tipo numérico en el precio \n";
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                mensajes = mensajes + "Ingrese el precio \n";
+                return false;
+            }
+        }
+
+
+
+         function validaDescripcion() {
+            var NombreU = document.getElementById("DESCRIPCION").value;
+            if(NombreU != ""){
+                return true;
+            }else{
+                mensajes = mensajes + "Ingrese la descripción del producto \n"
+                return false;
+            }
+        }
+
+        function validaImagen() {
+            var img = document.getElementById("imagen").value;
+            if(img != ""){
+                return true;
+            }else{
+                mensajes = mensajes + "Ingrese la imagen \n"
+                return false;
+            }
+        }
+
+        function verifica_formulario(){
+
+            mensajes = "";
+
+            var nom = validaNombre();
+            var prec = validaPrecio();
+            var des = validaDescripcion();
+            var img = validaImagen();
+
+
+            if(nom!=true || prec!=true || des!=true || img!=true){
+                alert(mensajes);
+
+             }
+        }
+    </script>
 </head>
 <body>
 <div class="top-bar">
@@ -134,19 +200,16 @@
             <input type="text" placeholder="Descripción" name="descripcion" id="DESCRIPCION" value="{{request.form.descripcion }}">
             <br>
             <br>
-            <input type="file" placeholder="imagen" name="imagen" id="imagen"  value="{{request.form.imagen }}">
+            <input type="text" placeholder="imagen" name="imagen" id="imagen"  value="{{request.form.imagen }}">
             <br>
             <br>
             <!-- <input type="tint" placeholder="Password" name="contraseña"  id="CONTRASEÑA" value="{{request.form.contraseña }}"> -->
-            <a>Disponibilidad</a><select name="disponibilidad">
-                <option value="true">Sí</option>
-                <option value="false">No</option>
-            </select>
-            <br>
-            <br>
+            <label for="disponibilidad">Disponibilidad:</label>
+            <input type="checkbox" name="disponibilidad" id="disponibilidad"><br><br>
             <!-- <input class="btn btn-default" type="submit" value="Register"> -->
            <a href="{{ url_for('loginAdmin.success') }}" class="button">Regresar</a>
-            <input type="submit" value="Agregar Producto" class="custom-button" onclick="verifica_formulario()">
+
+            <input type="submit" value="Agregar Producto" onclick="verifica_formulario()" class="custom-button">
         </form>
         {% if error %}
             <p class="error"><strong>Error:</strong> {{ error }}

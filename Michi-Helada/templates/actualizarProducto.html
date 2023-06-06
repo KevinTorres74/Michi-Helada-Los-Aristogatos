@@ -102,6 +102,72 @@
       background-color: #ddd;
     }
      </style>
+
+    <script type="text/javascript">
+        var mensajes="";
+        function validaNombre() {
+            var NombreU = document.getElementById("nombre").value;
+            if(NombreU != ""){
+                return true;
+            }else{
+                mensajes = mensajes + "Ingrese el nombre del producto \n"
+                return false;
+            }
+        }
+
+        function validaPrecio() {
+            var cpU = document.getElementById("precio").value;
+            if (cpU != "") {
+                if (isNaN(cpU)) {
+                    mensajes = mensajes + "Sólo se aceptan datos de tipo numérico en el precio \n";
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                mensajes = mensajes + "Ingrese el precio \n";
+                return false;
+            }
+        }
+
+
+
+         function validaDescripcion() {
+            var NombreU = document.getElementById("descripcion").value;
+            if(NombreU != ""){
+                return true;
+            }else{
+                mensajes = mensajes + "Ingrese la descripción del producto \n"
+                return false;
+            }
+        }
+
+        function validaImagen() {
+            var img = document.getElementById("imagen").value;
+            if(img != ""){
+                return true;
+            }else{
+                mensajes = mensajes + "Ingrese la imagen \n"
+                return false;
+            }
+        }
+
+        function verifica_formulario(){
+
+            mensajes = "";
+
+            var nom = validaNombre();
+            var prec = validaPrecio();
+            var des = validaDescripcion();
+            var img = validaImagen();
+
+
+            if(nom!=true || prec!=true || des!=true || img!=true){
+                alert(mensajes);
+
+             }
+        }
+    </script>
 </head>
 <body>
 <div class="top-bar">

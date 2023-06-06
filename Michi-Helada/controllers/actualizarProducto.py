@@ -36,7 +36,7 @@ def actualizarProducto():
 
                 db.session.commit()
 
-                flash("El producto se ha actualizado")
+                #flash("El producto se ha actualizado")
                 return redirect(url_for("verProducto.verProducto"))
             else:
                 flash("No se encontró el producto.")
