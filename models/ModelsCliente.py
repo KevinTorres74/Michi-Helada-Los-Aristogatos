@@ -1,4 +1,4 @@
-from alchemyClasses
+from alchemyClasses import Cliente
 
 
 def obten_cliente(id_cliente_arg):

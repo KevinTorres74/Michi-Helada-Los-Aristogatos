@@ -5,7 +5,7 @@ class vendedor(db.Model):
     id_cliente = db.Column('id_cliente', db.String(200), primary_key=True)
     nombre = db.Column('nombre', db.String(45))
     correo = db.Column('correo', db.String(200))
-    telefono = db.Column('telefono', db.integer)
+    telefono = db.Column('telefono', db.Integer)
     fna = db.Column('fna', db.Date)
     contraseña = db.Column('contraseña', db.String(45))
 

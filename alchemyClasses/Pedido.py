@@ -5,7 +5,7 @@ class Producto(db.Model):
     id_cliente = db.Column('id_cliente', db.String(200), primary_key=True)
     nombre = db.Column('nombre', db.String(45))
     precio = db.Column('precio', db.String(200))
-    descripcion = db.Column('descripcion', db.integer)
+    descripcion = db.Column('descripcion', db.Integer)
     imagen = db.Column('imagen')
     disponibilidad = db.Column('disponibilidad', db.String(45))
 

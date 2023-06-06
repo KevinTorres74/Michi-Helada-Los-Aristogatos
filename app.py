@@ -2,7 +2,7 @@ from flask import Flask
 import pymysql
 
 from flask import Flask, redirect, url_for
-
+from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
 from alchemyClasses.Cliente import db
 from controllers.ConsultaCliente import consulta_cliente_blueprint
 from controllers.VerProductoC import verProductoBlueprint
@@ -16,21 +16,33 @@ from datetime import datetime
 from models.VerProductoM import Producto
 from models.ModelsCliente import Cliente
 from models.HacerPedidoM import Pedido
-from models.SesiónVendedorM import vendedor
+from models.SesiónVendedorM import Vendedor
 from werkzeug.utils import secure_filename
 from flask import Flask
+import os
 
 app = Flask(__name__)
 app.register_blueprint(pedido_blueprint)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+try:
+    conn = pymysql.connect(
+        host='localhost',
+        user='root',
+        password='Jimmypage1970',
+        database='ing_soft1',
+        port=3306
+    )
+    print("Conexión exitosa a la base de datos")
+    conn.close()
+except pymysql.Error as e:
+    print("Error al conectar a la base de datos:", e)
 
-app = Flask(__name__)
+app.register_blueprint(ConsultaClienteBlueprint)
+app.register_blueprint(HacerPedidoBlueprint)
+app.register_blueprint(SesiónVendedorBlueprint)
+app.register_blueprint(VerProductoBlueprint)
 
-app.register_blueprint(consultaclienteBlueprint)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root: Jimmypage1970@localhost:3306/bdd-ingsoft'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root: Jimmypage1970@localhost:3306/ing_soft1'
 app.config.from_mapping(
     SECRET_KEY='dev'
 )
@@ -43,4 +55,4 @@ def hello_world():  # put application's code here
 
 
 if __name__ == '__main__':
-    app.run(route=5000, debug=True)
+    app.run()

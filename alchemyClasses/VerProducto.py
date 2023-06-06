@@ -2,7 +2,7 @@ from alchemyClasses.__init__ import db
 from sqlalchemy import ForeignKey
 
 class Producto(db.Model):
-    __tablename__ = 'producto'
+    __tablename__ = 'Producto'
 
     #id_producto = db.Column('id_producto', db.String(200), primary_key=True)
     id_producto = db.Column('id_producto', db.Integer, primary_key=True, autoincrement=True)
