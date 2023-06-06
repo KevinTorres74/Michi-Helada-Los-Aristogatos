@@ -1,0 +1,35 @@
+{% extends "viewUpdPass/main.html" %}
+{% block titulo %} Vendedor {% endblock %}
+{% block contenido %}
+
+<section class="section">
+    <div class="columns">
+        <div class="column">
+            <h3 class="is-size-3">Cambiar Contraseña</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Contraseña</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contrasenia in contrasenias %}
+                    <tr>
+                        <td>{{contrasenia[1]}}</td>
+                        <td>{{contrasenia[2]}}</td>
+                        <td>{{contrasenia[3]}}</td>
+                        <td>
+                            {# Pasar el id (lo que hay en contrasenia[0] #}
+                            <a href="{{url_for('editar_pass', id=contrasenia[0])}}" class="button is-info">Editar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

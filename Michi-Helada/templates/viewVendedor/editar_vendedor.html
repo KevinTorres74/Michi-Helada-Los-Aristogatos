@@ -1,0 +1,35 @@
+{% extends "viewVendedor/base.html" %}
+{% block titulo %}
+Actualizar Vendedor
+{% endblock %}
+{% block contenido %}
+<section class="section">
+    <div class="columns">
+        <div class="column">
+            <h3 class="is-size-3">Actualizar Vendedor</h3>
+            <form action="{{url_for('actualizar_vendedor')}}" method="post">
+                {# Enviar el id en un campo oculto #}
+                <input type="hidden" name="id" value="{{vendedor[0]}}">
+                <label for="nombre">Nombre:</label>
+                <input value="{{vendedor[1]}}" required type="text" class="input" placeholder="Nombre" name="nombre" id="nombre">
+                <label for="correo">Correo</label>
+                <input value="{{vendedor[2]}}" required type="text" class="input" placeholder="Correo" name="correo" id="correo">
+                <label for="tel">Telefono</label>
+                <input value="{{vendedor[3]}}" required type="text" class="input" placeholder="Telefono" name="tel" id="tel">
+                <label for="fna">Fecha De Nacimiento</label>
+                <input value="{{vendedor[4]}}" required type="date" class="input" placeholder="Fecha De Nacimiento" name="fna" id="fna">
+                <label for="pass">Contraseña</label>
+                <input value="{{vendedor[5]}}" required type="text" class="input" placeholder="Contraseña" name="pass" id="pass">
+                <a href="{{url_for('vendedores')}}" class="button is-primary mt-2">Volver</a>
+                <button type="submit" class="button is-success mt-2" onclick="showSuccessMessage()">Guardar</button>
+            </form>
+        </div>
+    </div>
+</section>
+<!--mostrar mensaje de "accion correcta" al presionar boton de Guardar-->
+    <script>
+        function showSuccessMessage() {
+            alert('Cambio Exitoso!');
+        }
+    </script>
+{% endblock %}
