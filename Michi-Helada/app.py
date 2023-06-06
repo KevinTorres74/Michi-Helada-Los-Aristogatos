@@ -3,6 +3,22 @@ from alchemyClasses.mostrar_reporte_venta import *
 from alchemyClasses.consultar_cliente import *
 from controllers import controlador_vendedor, controlador_upd_pass
 
+import pymysql
+from flask import Flask, redirect, url_for
+from alchemyClasses.cliente import db
+from controllers.register import registerBlueprint
+from controllers.loginAdmin import loginAdminBlueprint
+from controllers.agregarProducto import agregarProductoBlueprint
+from controllers.verProductos import verProductoBlueprint
+from controllers.actualizarProducto import actualizarProductoBlueprint
+from alchemyClasses.cliente import Cliente
+from datetime import datetime
+from models.model_cliente import agregar_cliente
+from werkzeug.utils import secure_filename
+from alchemyClasses.producto import Producto
+from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
+import os
+
 app = Flask(__name__)
 
 
@@ -100,5 +116,32 @@ def not_found(error):
     return redirect(url_for('passws'))
 
 
+
+
+
+
+
+
+
+app = Flask(__name__, instance_relative_config=True)
+app.register_blueprint(registerBlueprint)
+app.register_blueprint(loginAdminBlueprint)
+app.register_blueprint(agregarProductoBlueprint)
+app.register_blueprint(verProductoBlueprint)
+app.register_blueprint(actualizarProductoBlueprint)
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Josue318#@localhost:3306/ing_soft2"
+app.config.from_mapping(
+    SECRET_KEY = 'dev'
+)
+db.init_app(app)
+
+
+@app.route('/', methods=['GET','POST'])
+def hello_world():
+    return redirect(url_for('register.register'))
+
+
+
 if __name__ == '__main__':
+    db.create_all()
     app.run()
