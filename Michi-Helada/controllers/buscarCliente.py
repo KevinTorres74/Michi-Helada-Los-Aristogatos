@@ -1,26 +1,29 @@
+import functools
+import sqlalchemy.exc
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
 from alchemyClasses.cliente import Cliente
-from models.model_cliente import obten_cliente
-from alchemyClasses.cliente import db
+from alchemyClasses.__init__ import db
 
 buscarClienteBlueprint = Blueprint('buscarCliente', __name__, url_prefix='/buscarCliente')
 
-
-@buscarClienteBlueprint.route('/', methods=["GET", "POST"])
+@buscarClienteBlueprint.route('/', methods=['GET', 'POST'])
 def buscarCliente():
-    if request.method == "POST":
-        id_cliente = request.form["id_cliente"]
-        cliente = obten_cliente(id_cliente)
-        if cliente != None:
-            print("Se encontró el cliente!.")
-            return render_template('buscarClienteSuccess.html', getattr=getattr, cliente=cliente)
+    if request.method == 'POST':
+        correo = request.form.get('correo')
+
+        # Validación de correo electrónico
+        at_symbol_count = correo.count('@')
+        if at_symbol_count != 1:
+            flash('El correo debe contener el símbolo @ una vez', 'error')
+            return redirect(url_for('buscarCliente.buscarCliente'))
+
+        cliente = Cliente.query.filter_by(correo=correo).first()
+
+        if cliente:
+            return render_template('verCliente.html', cliente=cliente)
         else:
-            print("No existe cliente con el id " + str(id_cliente) + ".")
-            return redirect(url_for('buscarCliente.failure'))
-    else:
-        return render_template('buscarCliente.html')
+            flash('Correo no encontrado o incorrecto, intente nuevamente', 'error')
 
+        return redirect(url_for('buscarCliente.buscarCliente'))
 
-@buscarClienteBlueprint.route('/failure', methods=["GET"])
-def failure():
-    return render_template("buscarClienteFailure.html")
+    return render_template('buscarCliente.html')
