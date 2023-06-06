@@ -4,14 +4,15 @@ import pymysql
 from flask import Flask, redirect, url_for
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
 from alchemyClasses.Cliente import db
-from controllers.ConsultaCliente import consulta_cliente_blueprint
+
+from controllers.ConsultaCliente import consulta_cliente_Blueprint
 from controllers.VerProductoC import verProductoBlueprint
 from controllers.HacerPedido import pedido
-from controllers.SesiónVendedorC import login
+from controllers.SesiónVendedorC import loginVendedorBlueprint
 from alchemyClasses.Cliente import Cliente
 from alchemyClasses.VerProducto import Producto
 from alchemyClasses.Pedido import Producto
-from alchemyClasses.SesiónVendedor import vendedor
+
 from datetime import datetime
 from models.VerProductoM import Producto
 from models.ModelsCliente import Cliente
@@ -21,8 +22,6 @@ from werkzeug.utils import secure_filename
 from flask import Flask
 import os
 
-app = Flask(__name__)
-app.register_blueprint(pedido_blueprint)
 
 try:
     conn = pymysql.connect(
@@ -37,7 +36,7 @@ try:
 except pymysql.Error as e:
     print("Error al conectar a la base de datos:", e)
 
-app.register_blueprint(ConsultaClienteBlueprint)
+app.register_blueprint(consulta_cliente_Blueprint)
 app.register_blueprint(HacerPedidoBlueprint)
 app.register_blueprint(SesiónVendedorBlueprint)
 app.register_blueprint(VerProductoBlueprint)
@@ -55,4 +54,4 @@ def hello_world():  # put application's code here
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=3306, debug=True)

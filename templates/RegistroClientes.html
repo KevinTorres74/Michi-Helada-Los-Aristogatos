@@ -51,7 +51,7 @@
             position: absolute;
             background-color: #f9f9f9;
             min-width: 200px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 16px 16px 0px rgba(0, 0, 0, 0.2);
             padding: 12px 16px;
         }
 
@@ -63,7 +63,7 @@
         .dropdown-content a {
             display: block;
             color: #333;
-            padding: 8px 0;
+            padding: 16px 0;
             text-decoration: none;
         }
 
@@ -93,7 +93,7 @@
             position: absolute;
             background-color: #f9f9f9;
             min-width: 200px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 16px 16px 0px rgba(0, 0, 0, 0.2);
             padding: 12px 16px;
             right: 0;
         }
@@ -106,7 +106,7 @@
         .dropdown-content a {
             display: block;
             color: #333;
-            padding: 8px 0;
+            padding: 16px 0;
             text-decoration: none;
         }
 
@@ -224,20 +224,20 @@
     <form action="/register" method="post">
 
 
-        <input type="text" placeholder="Nombre" name="nombre" id="NOMBRE" value="{{ request.form.nombre }}">
+        <input type="text" placeholder="Nombre" name="nombre" id="NOMBRE" value="">
         <br>
         <br>
-        <input type="Correo" placeholder="Correo" name="correo" id="CORREO" value="{{ request.form.correo }}">
+        <input type="Correo" placeholder="Correo" name="correo" id="CORREO" value="">
         <br>
         <br>
-        <input type="Integer" placeholder="Número" name="telefono" id="TELEFONO" value="{{ request.form.telefono }}">
+        <input type="Integer" placeholder="Número" name="telefono" id="TELEFONO" value="">
         <br>
         <br>
-        <input type="date" placeholder="Fecha de nacimiento" name="fna" id="FNA" value="{{ request.form.fna }}">
+        <input type="date" placeholder="Fecha de nacimiento" name="fna" id="FNA" value="">
         <br>
         <br>
         <input type="password" placeholder="Password" name="contraseña" id="CONTRASEÑA"
-               value="{{ request.form.contraseña }}">
+               value="">
         <br>
         <br>
         <!-- <input class="btn btn-default" type="submit" value="Register"> -->

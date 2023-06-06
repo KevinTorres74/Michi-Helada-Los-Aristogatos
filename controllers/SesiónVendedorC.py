@@ -1,37 +1,42 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session
+import functools
+import sqlalchemy.exc
+from flask_sqlalchemy import SQLAlchemy
+from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
+from alchemyClasses.SesiónVendedor import Vendedor
 
-# Crear el Blueprint para la autenticación y el manejo de sesión
-auth_blueprint = Blueprint('auth', __name__)
+loginVendedorBlueprint = Blueprint('loginVendedor', __name__, url_prefix='/loginVendedor')
 
 
-# Ruta para el inicio de sesión del vendedor
-@auth_blueprint.route('/login', methods=['GET', 'POST'])
-def login():
+@loginVendedorBlueprint.route('/', methods=['GET', 'POST'])
+def loginVendedor():
     if request.method == 'POST':
-        # Obtener los datos del formulario
-        username = request.form['username']
-        password = request.form['password']
 
-        # Aquí puedes implementar la lógica de autenticación
-        # Verificar si el vendedor existe en la base de datos y si la contraseña es correcta
+        nombre = request.form['nombre']
+        correo = request.form['correo']
+        contrasena = request.form['contraseña']
 
-        # Ejemplo de autenticación básica
-        if username == 'vendedor' and password == 'vendedor123':
-            # Establecer la sesión del vendedor
-            session['username'] = username
-            return redirect(url_for('main.dashboard'))
+        vendedor = Vendedor.query.filter_by(nombre=nombre, correo=correo, contraseña=contrasena).first()
+
+        if vendedor != None:
+
+            session.clear()
+            session['vendedor_id'] = vendedor.id_vendedor
+            session['vendedor_nombre'] = vendedor.nombre
+            return redirect(url_for("loginVendedor.success"))
         else:
-            # Si las credenciales son incorrectas, mostrar un mensaje de error
-            error_message = 'Credenciales inválidas. Inténtalo de nuevo.'
-            return render_template('SesiónVendedor.html', error_message=error_message)
-
-    # Si el método es GET, mostrar el formulario de inicio de sesión
-    return render_template('login.html')
+            return render_template('SesiónVendedor.html')
+    else:
+        return render_template('SesiónVendedor.html')
 
 
-# Ruta para cerrar sesión del vendedor
-@auth_blueprint.route('/logout')
-def logout():
-    # Eliminar la sesión del vendedor
-    session.pop('username', None)
-    return redirect(url_for('auth.login'))
+@loginVendedorBlueprint.route('/success', methods=['GET'])
+def success():
+    if session.get('admin_id') != None:
+        return render_template("SVsucces.html")
+    flash("ERROR: Cookie de sesion vacia")
+    return redirect(url_for('loginVendedor.loginVendedor'))
+
+
+@loginVendedorBlueprint.route("/failure", methods=["GET"])
+def failure():
+    return render_template("SVfailure.html")
