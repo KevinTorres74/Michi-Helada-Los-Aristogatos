@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login Client page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+     <style>
+        body {
+
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1313%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='url(%23SvgjsLinearGradient1314)'%3e%3c/rect%3e%3cpath d='M1397.802%2c886.897C1468.157%2c883.508%2c1502.331%2c808.352%2c1536.454%2c746.732C1568.989%2c687.979%2c1606.006%2c623.79%2c1577.062%2c563.187C1544.937%2c495.925%2c1472.144%2c450.992%2c1397.802%2c456.428C1329.994%2c461.386%2c1291.038%2c526.572%2c1258.846%2c586.456C1228.968%2c642.035%2c1207.418%2c704.035%2c1233.907%2c761.307C1264.874%2c828.262%2c1324.118%2c890.447%2c1397.802%2c886.897' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1825.315%2c824.088C1862.054%2c823.371%2c1901.304%2c819.805%2c1922.21%2c789.586C1945.854%2c755.41%2c1951.465%2c708.772%2c1929.5%2c673.493C1908.458%2c639.697%2c1865.112%2c632.914%2c1825.315%2c633.962C1787.776%2c634.951%2c1750.684%2c647.254%2c1730.222%2c678.742C1707.82%2c713.216%2c1699.135%2c759.095%2c1721.644%2c793.499C1742.786%2c825.814%2c1786.705%2c824.841%2c1825.315%2c824.088' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1724.3424376356359 790.80374264196L1877.4581744701566 652.9377139505137 1594.1012630157268 492.1971230444559z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1986.1774890027295 897.9571765730474L1815.2761566115892 912.9091057387479 1830.2280857772898 1083.8104381298883 2001.1294181684302 1068.8585089641879z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M625.0104593267656 209.52503410788103L890.8651056505813 228.37002305002375 792.4027001764479 17.21671310072668z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1162.5859652959582 834.4486663261582L1263.6409379382865 666.6274366357194 1092.499491015359 660.6510456172397z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M357.072%2c1129.786C394.809%2c1130.281%2c427.368%2c1104.704%2c445.1%2c1071.389C461.779%2c1040.053%2c458.576%2c1002.953%2c440.998%2c972.111C423.23%2c940.936%2c392.936%2c918.119%2c357.072%2c916.937C319.143%2c915.687%2c281.344%2c933.031%2c262.986%2c966.245C245.122%2c998.567%2c254.536%2c1037.122%2c272.952%2c1069.133C291.428%2c1101.248%2c320.024%2c1129.3%2c357.072%2c1129.786' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1635.545%2c367.49C1733.014%2c371.801%2c1841.915%2c349.792%2c1888.23%2c263.922C1933.168%2c180.605%2c1878.014%2c87.351%2c1830.94%2c5.223C1783.482%2c-77.575%2c1730.745%2c-170.227%2c1635.545%2c-176.923C1531.606%2c-184.234%2c1433.712%2c-118.675%2c1385.939%2c-26.076C1341.51%2c60.043%2c1366.92%2c161.327%2c1418.82%2c243.161C1466.629%2c318.544%2c1546.367%2c363.546%2c1635.545%2c367.49' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M-114.38387594755072 518.4299632625386L-2.093641868353501 662.154908749209 29.34106953911963 406.13972918334144z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1529.25%2c752.54C1637.924%2c757.458%2c1767.557%2c765.039%2c1822.698%2c671.265C1878.192%2c576.891%2c1808.318%2c467.132%2c1752.433%2c372.989C1698.257%2c281.726%2c1635.376%2c175.795%2c1529.25%2c176.932C1424.152%2c178.058%2c1363.705%2c284.969%2c1314.201%2c377.685C1268.546%2c463.192%2c1230.225%2c562.558%2c1278.46%2c646.637C1326.858%2c731%2c1432.089%2c748.143%2c1529.25%2c752.54' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1587.0071873510294 100.21754638696765L1485.4992639995082 283.3426876515432 1668.6244052640839 384.8506110030645 1770.132328615605 201.72546973848887z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1538.267%2c802.908C1651.632%2c804.507%2c1734.005%2c704.901%2c1785.423%2c603.855C1831.578%2c513.151%2c1835.488%2c407.075%2c1784.508%2c318.992C1733.622%2c231.073%2c1639.832%2c174.938%2c1538.267%2c176.825C1439.715%2c178.656%2c1355.549%2c241.86%2c1307.381%2c327.858C1260.378%2c411.777%2c1260.854%2c510.539%2c1302.9%2c597.049C1351.734%2c697.524%2c1426.564%2c801.332%2c1538.267%2c802.908' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M785.603%2c420.261C827.847%2c421.778%2c872.811%2c410.546%2c894.655%2c374.357C917.081%2c337.204%2c907.964%2c290.86%2c886.462%2c253.165C864.731%2c215.069%2c829.46%2c182.884%2c785.603%2c183.181C742.148%2c183.475%2c707.245%2c216.021%2c687.081%2c254.515C668.433%2c290.115%2c668.787%2c332.437%2c689.322%2c366.984C709.409%2c400.778%2c746.315%2c418.85%2c785.603%2c420.261' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M868.0865523394184 1117.6672688404462L822.3843178675824 857.0247272412109 642.6159658080969 1002.5982684127611z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1313'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='10.94%25' y1='119.44%25' x2='89.06%25' y2='-19.44%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1314'%3e%3cstop stop-color='%230e2a47' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(235%2c 93%2c 255%2c 1)' offset='0.57'%3e%3c/stop%3e%3cstop stop-color='rgba(235%2c 93%2c 255%2c 1)' offset='0.59'%3e%3c/stop%3e%3cstop stop-color='rgba(235%2c 93%2c 255%2c 1)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
+        }
+
+       .container {
+            max-width: 270px;
+            margin: 0 auto;
+            margin-top: 200px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 50px;
+            box-shadow: 15px 15px 10px 0px rgba(0,0,0,0.1);
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container form {
+            margin-bottom: 20px;
+        }
+
+        .container form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .container form .btn-register {
+            width: 100%;
+        }
+
+        .container form .btn-login {
+            text-align: center;
+        }
+
+       .custom-button {
+            display: inline-block;
+                padding: 10px 20px;
+                background-color: #ffc;
+                color: rgb(193,64,81);
+                text-decoration: none;
+                border-radius: 15px;
+                cursor: pointer;
+        }
+       .button {
+                display: inline-block;
+                 padding: 10px 20px;
+                background-color: #ffc;
+                color: rgb(193,64,81);
+                text-decoration: none;
+                border-radius: 15px;
+                cursor: pointer;
+       }
+        /* Estilos para la barra superior */
+    .top-bar {
+      background-color: rgba(193,71,20);
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px; /* Altura fija de la barra superior */
+    }
+
+    /* Estilos para la lista desplegable */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 200px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 12px 16px;
+      right: 0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Estilos para los enlaces dentro de la lista desplegable */
+    .dropdown-content a {
+      display: block;
+      color: #333;
+      padding: 8px 0;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    </style>
+    <script type="text/javascript">
+        var mensajes="";
+        function validaNombre() {
+            var NombreU = document.getElementById("NOMBRE").value;
+            if(NombreU != ""){
+                return true;
+            }else{
+                mensajes = mensajes + "Ingrese su nombre \n"
+                return false;
+            }
+        }
+
+        function validaCorreo() {
+            var CorreoN = document.getElementById("CORREO").value;
+            if(CorreoN != ""){
+                return true;
+            }else{
+                mensajes = mensajes + "Ingrese su correo \n"
+                return false;
+            }
+        }
+
+
+
+        function validaContraseña() {
+            var passwor = document.getElementById("CONTRASEÑA").value;
+            if(passwor != ""){
+                return true;
+             }else{
+
+                mensajes = mensajes + "Ingrese su contraseña\n"
+                return false;
+             }
+        }
+
+        function verifica_formulario(){
+
+            mensajes = "";
+
+            var nom = validaNombre();
+            var corr = validaCorreo();
+            var pass = validaContraseña();
+
+            if(nom!=true && corr!=true && pass!=true){
+                alert(mensajes);
+             }
+        }
+    </script>
+
+</head>
+    <body>
+        <div class="top-bar">
+    <h2>Michi-Helada</h2>
+    <div class="top-bar">
+    </div>
+</div>
+        <div class="container">
+        <h1>Iniciar sesión como Cliente</h1>
+        <br>
+        <form action="/loginCliente" method="post">
+            <input type="text" placeholder="Nombre" name="nombre" value="{{
+                request.form.nombre }}" id="NOMBRE">
+            <br>
+            <br>
+            <input type="email" placeholder="Correo" name="correo" value="{{
+                request.form.correo }}" id="CORREO">
+            <br>
+            <br>
+            <input type="password" placeholder="Contraseña" name="contraseña" value="{{
+                request.form.contraseña }}" id="CONTRASEÑA">
+            <br>
+            <br>
+            <a href="{{ url_for('register.register') }}" class="button">Regresar</a>
+            <input type="submit" value="Acceder" onclick="verifica_formulario() " class="custom-button">
+            <!-- <input class="btn btn-default" type="submit" value="LoginAdmin"> -->
+        </form>
+        {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }}
+        {% endif %}
+        </div>
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+    </body>
+</html>
